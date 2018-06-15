@@ -1,0 +1,4 @@
+---
+  ruby_version: 2.5.1
+  src_url: https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz
+  src_dir: /usr/local/src

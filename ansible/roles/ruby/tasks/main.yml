@@ -1,0 +1,38 @@
+---
+- name: remove default ruby
+  become: true
+  yum: name=ruby state=absent
+
+- name: install requirement
+  become: true
+  yum: name={{ item }} state=latest
+  with_items:
+    - gcc
+    - zlib
+    - zlib-devel
+    - openssl
+    - openssl-devel
+
+- name: download ruby source
+  become: true
+  get_url: url={{ src_url }} dest={{ src_dir }}
+
+- name: unarchive ruby source
+  become: true
+  command: chdir={{ src_dir }} tar zxvf ruby-{{ ruby_version }}.tar.gz
+
+- name: configure ruby
+  become: true
+  command: chdir={{ src_dir }}/ruby-{{ ruby_version }} ./configure
+
+- name: make ruby
+  become: true
+  command: chdir={{ src_dir }}/ruby-{{ ruby_version }} make
+
+- name: install ruby
+  become: true
+  command: chdir={{ src_dir }}/ruby-{{ ruby_version }} make install
+
+- name: include local bin to sudoers path
+  become: true
+  command: sed -i -e '/^Defaults *secure_path/s/$/:\/usr\/local\/bin/g' /etc/sudoers

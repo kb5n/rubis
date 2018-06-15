@@ -7,7 +7,21 @@ Things you may want to cover:
 
 * Ruby version
 
+ruby 2.5.1
+rails 5.2.0
+
 * System dependencies
+
+python 3.6.1
+ansible 2.3.1
+
+```
+make setup-staging
+```
+
+```
+make setup-production
+```
 
 * Configuration
 
