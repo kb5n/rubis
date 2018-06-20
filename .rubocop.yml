@@ -1,0 +1,13 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+Rails:
+  Enabled: true
+Metrics/LineLength:
+  Max: 128
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
