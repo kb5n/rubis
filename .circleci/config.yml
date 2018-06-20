@@ -39,7 +39,8 @@ jobs:
 
       # Database setup
       - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      # now this project has no schema
+      # - run: bundle exec rake db:schema:load
 
       # run tests!
       - run:
