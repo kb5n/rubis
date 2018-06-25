@@ -1,7 +1,5 @@
 module Dashboard
   class TopController < Dashboard::ApplicationController
-    layout 'dashboard'
-    def index
-    end
+    def index; end
   end
 end
