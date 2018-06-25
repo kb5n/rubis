@@ -3,8 +3,12 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'node_modules/**/*'
+    - 'spec/*_helper.rb'
 Rails:
   Enabled: true
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
 Metrics/LineLength:
   Max: 128
 Style/FrozenStringLiteralComment:
