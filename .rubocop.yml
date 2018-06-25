@@ -5,6 +5,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'db/schema.rb'
     - 'spec/*_helper.rb'
+    - 'vendor/**/*'
 Rails:
   Enabled: true
 Metrics/BlockLength:
