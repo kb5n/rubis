@@ -3,10 +3,52 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title
-      = @site_name
+      = @site.title
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    .ui.hidden.divider
+
+    %h1.ui.center.aligned.header
+      .content
+        = @site.title
+        .sub.header
+          = @site.description
+
+    .ui.hidden.divider
+
+    .ui.main.container
+      .ui.breadcrumb
+        .section.active
+          Home
+
+    .ui.hidden.divider
+
+    .ui.two.column.grid.main.container
+      .eleven.wide.computer.eleven.wide.tablet.sixteen.wide.mobile.column
+
+        = yield
+
+      .five.wide.computer.five.wide.tablet.sixteen.wide.mobile.column
+
+        .ui.secondary.segment
+          %h3.ui.header
+            Categories
+          .ui.labels
+            - @categories.each do |category|
+              = link_to '#', class: 'ui violet label' do
+                = category.name
+                .detail
+                  22
+
+        .ui.secondary.segment
+          %h3.ui.header
+            Tags
+          .ui.tag.labels
+            - @tags.each do |tag|
+              = link_to '#', class: 'ui olive label' do
+                = tag.name
+                .detail
+                  = 10

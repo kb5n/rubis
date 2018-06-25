@@ -1,0 +1,32 @@
+%section.content-header
+  %h1 Site
+%section.content
+  .box.box-info
+    = form_for @site, url: dashboard_site_path, html: {class: 'form-horizontal'} do |f|
+      .box-header
+        = link_to dashboard_site_url, class: 'btn btn-sm btn-info pull-left' do
+          Back
+      .box-body
+        .form-group{ class: "#{'has-error' if @site.errors.full_messages_for(:title).any?}" }
+          = f.label :title, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :title, class: 'form-control'
+            - @site.errors.full_messages_for(:title).each do |message|
+              %span.help-block= message
+        .form-group{ class: "#{'has-error' if @site.errors.full_messages_for(:description).any?}" }
+          = f.label :description, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_area :description, class: 'form-control'
+            - @site.errors.full_messages_for(:description).each do |message|
+              %span.help-block= message
+        .form-group
+          = f.label :created_at, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :created_at, readonly: true, class: 'form-control'
+        .form-group
+          = f.label :updated_at, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :updated_at, readonly: true, class: 'form-control'
+
+      .box-footer
+        = f.submit 'Update', class: 'btn btn-sm btn-success pull-right'
