@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
     resources :sessions, only: %i[new create destroy]
     resources :sites, only: %i[show edit update]
+    resources :tags
+    resources :categories
   end
   root to: 'top#index'
 end

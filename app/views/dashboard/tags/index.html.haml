@@ -1,0 +1,29 @@
+%section.content-header
+  %h1 Tags
+%section.content
+  .box.box-info
+    .box-header.with-border
+      = link_to new_dashboard_tag_path, class: 'btn btn-sm btn-success pull-left' do
+        Create new tag
+    .box-body
+      .table-responsive
+        %table.table.no-margin
+          %thead
+            %tr
+              %th id
+              %th name
+              %th identifier
+              %th show
+              %th edit
+              %th destroy
+          %tbody
+            - @tags.each do |tag|
+              %tr
+                %td= tag.id
+                %td= tag.name
+                %td= tag.identifier
+                %td= link_to 'Show', dashboard_tag_path(tag), class: 'btn btn-xs btn-info'
+                %td= link_to 'Edit', edit_dashboard_tag_path(tag), class: 'btn btn-xs btn-success'
+                %td= link_to 'Destroy', dashboard_tag_path(tag), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
+
+    .box-footer
