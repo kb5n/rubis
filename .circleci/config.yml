@@ -46,7 +46,7 @@ jobs:
       - run:
           name: run rubocop
           command: |
-            bundle exec rubocop
+            bundle exec rubocop -c .rubocop.yml
 
       # now this project has no rspec
       # # run tests!
