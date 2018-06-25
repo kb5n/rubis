@@ -3,6 +3,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'node_modules/**/*'
+    - 'vendor/**/*'
 Rails:
   Enabled: true
 Metrics/LineLength:
