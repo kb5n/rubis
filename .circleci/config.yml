@@ -42,11 +42,15 @@ jobs:
       # now this project has no schema
       # - run: bundle exec rake db:schema:load
 
-      # run rubocop
       - run:
           name: run rubocop
           command: |
             bundle exec rubocop
+
+      - run:
+          name: run brakeman
+          command: |
+            bundle exec brakeman -5 -A -w 1 -z
 
       # run tests!
       - run:
