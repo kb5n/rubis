@@ -1,0 +1,7 @@
+---
+- name: install epel-release
+  become: true
+  yum: name=epel-release state=latest
+- name: install nodejs
+  become: true
+  yum: name=nodejs state=latest
