@@ -16,6 +16,8 @@
       .login-box-body
         %p.login-box-msg
           Sign in to start your session
+        - flash.each do |type, msg|
+          %div{class: "alert alert-#{type}"}= msg
         = form_for @user, url: dashboard_sessions_path do |f|
           .form-group.has-feedback
             = f.text_field :email, class: 'form-control', placeholder: 'Email'
