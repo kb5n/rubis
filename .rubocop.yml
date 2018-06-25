@@ -4,8 +4,12 @@ AllCops:
     - 'bin/**/*'
     - 'node_modules/**/*'
     - 'vendor/**/*'
+    - 'spec/*_helper.rb'
 Rails:
   Enabled: true
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
 Metrics/LineLength:
   Max: 128
 Style/FrozenStringLiteralComment:
