@@ -12,6 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2018_06_21_061712) do
 
+  create_table "sites", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"

@@ -1,0 +1,25 @@
+%section.content-header
+  %h1 Site
+%section.content
+  .box.box-info
+    = form_for @site, url: dashboard_site_path, html: {class: 'form-horizontal'} do |f|
+      .box-body
+        .form-group
+          = f.label :title, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :title, readonly: true, class: 'form-control'
+        .form-group
+          = f.label :description, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_area :description, readonly: true, class: 'form-control'
+        .form-group
+          = f.label :created_at, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :created_at, readonly: true, class: 'form-control'
+        .form-group
+          = f.label :updated_at, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :updated_at, readonly: true, class: 'form-control'
+
+      .box-footer
+        = link_to 'Edit', edit_dashboard_site_path(@site), class: 'btn btn-sm btn-success pull-right'

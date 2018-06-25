@@ -3,6 +3,7 @@ module Dashboard
     protect_from_forgery with: :exception
 
     prepend_before_action :require_login
+    before_action :set_site
 
     add_flash_types :success, :info, :warning, :error
 
@@ -14,6 +15,10 @@ module Dashboard
 
     def current_user
       super if super.presence
+    end
+
+    def set_site
+      @site = Site.find(1)
     end
   end
 end
