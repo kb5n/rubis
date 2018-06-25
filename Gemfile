@@ -19,7 +19,9 @@ gem 'webpacker'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'foreman'
+  gem 'rspec-rails'
   gem 'rubocop'
 end
 
@@ -33,5 +35,9 @@ end
 group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'chromedriver-helper'
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'launchy'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
 end
