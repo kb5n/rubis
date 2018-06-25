@@ -3,7 +3,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'node_modules/**/*'
-    - 'vendor/**/*'
+    - 'db/schema.rb'
     - 'spec/*_helper.rb'
 Rails:
   Enabled: true
@@ -11,7 +11,9 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 Metrics/LineLength:
-  Max: 128
+  Max: 140
+Metrics/MethodLength:
+  Max: 20
 Style/FrozenStringLiteralComment:
   Enabled: false
 Style/Documentation:
