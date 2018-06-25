@@ -1,2 +1,4 @@
-module Dashboard::SessionsHelper
+module Dashboard
+  module SessionsHelper
+  end
 end
