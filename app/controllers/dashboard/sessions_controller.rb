@@ -11,15 +11,15 @@ module Dashboard
     def create
       @user = login(params[:user][:email], params[:user][:password])
       if @user
-        redirect_to dashboard_root_path, info: 'welcome'
+        redirect_to dashboard_root_path, success: 'Welcome'
       else
-        redirect_to dashboard_login_path, error: 'certification failed.'
+        redirect_to dashboard_login_path, error: 'Certification failed.'
       end
     end
 
     def destroy
       logout
-      redirect_to dashboard_root_path, info: 'good-bye!'
+      redirect_to dashboard_root_path
     end
   end
 end

@@ -13,16 +13,31 @@
 
     %h1.ui.center.aligned.header
       .content
-        = @site.title
-        .sub.header
-          = @site.description
+        = link_to @site.title, root_path
+        - unless @site.description.blank?
+          .sub.header
+            = @site.description
 
     .ui.hidden.divider
 
     .ui.main.container
       .ui.breadcrumb
-        .section.active
-          Home
+        = link_to root_path do
+          %i.home.icon
+        - unless @tag.blank?
+          %i.right.angle.icon.divider
+          .section.active
+            = link_to @tag.name, category_path(@tag.identifier), class: 'section'
+        - unless @category.blank?
+          %i.right.angle.icon.divider
+          .section.active
+            = link_to @category.name, category_path(@category.identifier), class: 'section'
+        - unless @article.blank?
+          %i.right.angle.icon.divider
+          = link_to @article.category.name, category_path(@article.category.identifier), class: 'section'
+          %i.right.angle.icon.divider
+          .section.active
+            = @article.title
 
     .ui.hidden.divider
 
@@ -38,17 +53,37 @@
             Categories
           .ui.labels
             - @categories.each do |category|
-              = link_to '#', class: 'ui violet label' do
-                = category.name
-                .detail
-                  22
+              - unless category.public_articles.count == 0
+                = link_to category_path(category.identifier), class: 'ui violet label' do
+                  = category.name
+                  .detail
+                    = category.public_articles.count
 
         .ui.secondary.segment
           %h3.ui.header
             Tags
           .ui.tag.labels
             - @tags.each do |tag|
-              = link_to '#', class: 'ui olive label' do
-                = tag.name
-                .detail
-                  = 10
+              - unless tag.public_articles.count == 0
+                = link_to tag_path(tag.identifier), class: 'ui pink label' do
+                  = tag.name
+                  .detail
+                    = tag.public_articles.count
+
+    .ui.hidden.divider
+
+    %h5.ui.center.aligned.header
+      .sub.header
+        &copy;
+        - if Time.current.year != @site.started_at.year
+          = @site.started_at.strftime('%Y ')
+          != '-'
+        = Time.current.year
+        != '&nbsp;'
+        = @site.copyright
+
+    .ui.hidden.divider
+
+    = javascript_pack_tag 'application'
+    -# = javascript_pack_tag 'hello_vue'
+    = javascript_pack_tag 'show_message'

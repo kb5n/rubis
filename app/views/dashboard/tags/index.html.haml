@@ -1,7 +1,7 @@
 %section.content-header
   %h1 Tags
 %section.content
-  .box.box-info
+  .box
     .box-header.with-border
       = link_to new_dashboard_tag_path, class: 'btn btn-sm btn-success pull-left' do
         Create new tag
@@ -10,20 +10,20 @@
         %table.table.no-margin
           %thead
             %tr
-              %th id
               %th name
               %th identifier
-              %th show
+              %th articles
               %th edit
               %th destroy
           %tbody
             - @tags.each do |tag|
               %tr
-                %td= tag.id
                 %td= tag.name
                 %td= tag.identifier
-                %td= link_to 'Show', dashboard_tag_path(tag), class: 'btn btn-xs btn-info'
+                %td
+                  %span.badge
+                    = tag.articles.published.count
+                    != '/'
+                    = tag.articles.count
                 %td= link_to 'Edit', edit_dashboard_tag_path(tag), class: 'btn btn-xs btn-success'
                 %td= link_to 'Destroy', dashboard_tag_path(tag), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
-
-    .box-footer

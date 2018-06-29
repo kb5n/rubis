@@ -1,25 +1,21 @@
 %section.content-header
   %h1 Site
 %section.content
-  .box.box-info
-    = form_for @site, url: dashboard_site_path, html: {class: 'form-horizontal'} do |f|
-      .box-body
-        .form-group
-          = f.label :title, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_field :title, readonly: true, class: 'form-control'
-        .form-group
-          = f.label :description, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_area :description, readonly: true, class: 'form-control'
-        .form-group
-          = f.label :created_at, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_field :created_at, readonly: true, class: 'form-control'
-        .form-group
-          = f.label :updated_at, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_field :updated_at, readonly: true, class: 'form-control'
+  .box
+    .box-body
+      %dl.dl-horizontal
+        %dt= Site.human_attribute_name(:title)
+        %dd= @site.title
+        %dt= Site.human_attribute_name(:description)
+        %dd= @site.description
+        %dt= Site.human_attribute_name(:copyright)
+        %dd= @site.copyright
+        %dt= Site.human_attribute_name(:started_at)
+        %dd= l @site.started_at
+        %dt= Site.human_attribute_name(:created_at)
+        %dd= l @site.created_at
+        %dt= Site.human_attribute_name(:updated_at)
+        %dd= l @site.updated_at
 
-      .box-footer
-        = link_to 'Edit', edit_dashboard_site_path(@site), class: 'btn btn-sm btn-success pull-right'
+    .box-footer
+      = link_to 'Edit', edit_dashboard_site_path(@site), class: 'btn btn-sm btn-success pull-right'

@@ -5,7 +5,7 @@ module Dashboard
     prepend_before_action :require_login
     before_action :set_site
 
-    add_flash_types :success, :info, :warning, :error
+    add_flash_types :success, :info, :warning, :danger
 
     private
 

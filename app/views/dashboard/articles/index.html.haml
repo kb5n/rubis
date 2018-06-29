@@ -1,0 +1,36 @@
+%section.content-header
+  %h1= Article.model_name.human
+%section.content
+  .box.box-info
+    .box-header.with-border
+      = link_to new_dashboard_article_path, class: 'btn btn-sm btn-success pull-left' do
+        = t :add_article
+    .box-body
+      .table-responsive
+        %table.table.no-padding
+          %thead
+            %tr
+              %th= Article.human_attribute_name(:status)
+              %th= Category.human_attribute_name(:name)
+              %th= Article.human_attribute_name(:title)
+              %th.datetime-column= Article.human_attribute_name(:published_at)
+              %th show
+              %th edit
+              %th destroy
+          %tbody
+            - @articles.each do |article|
+              %tr
+                %td
+                  -if article.published?
+                    .label.label-success Public
+                  -else
+                    .label.label-default Draft
+                %td= article.category.name
+                %td= article.title
+                -# %td= article.published_at.strftime('%Y/%m/%d %H:%M:%S')
+                %td= l article.published_at
+                %td= link_to 'Show', dashboard_article_path(article), class: 'btn btn-xs btn-info'
+                %td= link_to 'Edit', edit_dashboard_article_path(article), class: 'btn btn-xs btn-success'
+                %td= link_to 'Destroy', dashboard_article_path(article), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
+
+    .box-footer

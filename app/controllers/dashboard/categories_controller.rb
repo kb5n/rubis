@@ -1,15 +1,13 @@
 module Dashboard
   class CategoriesController < Dashboard::ApplicationController
-    before_action :set_category, only: %i[show edit update destroy]
+    before_action :set_category, only: %i[edit update destroy]
 
     layout 'dashboard/application'
+
     # GET /dashboard/categories
     def index
       @categories = Category.all
     end
-
-    # GET /dashboard/categories/1
-    def show; end
 
     # GET /dashboard/categories/new
     def new
@@ -24,7 +22,7 @@ module Dashboard
       @category = Category.new(category_params)
 
       if @category.save
-        redirect_to dashboard_categories_url, notice: 'category was successfully created.'
+        redirect_to dashboard_categories_url, success: 'Category was successfully created.'
       else
         render :new
       end
@@ -33,7 +31,7 @@ module Dashboard
     # PATCH/PUT /dashboard/categories/1
     def update
       if @category.update(category_params)
-        redirect_to dashboard_categories_url, notice: 'category was successfully updated.'
+        redirect_to dashboard_categories_url, success: 'Category was successfully updated.'
       else
         render :edit
       end
@@ -41,8 +39,11 @@ module Dashboard
 
     # DELETE /dashboard/categories/1
     def destroy
-      @category.destroy
-      redirect_to dashboard_categories_url, notice: 'category was successfully destroyed.'
+      if @category.destroy
+        redirect_to dashboard_categories_url, success: 'Category was successfully destroyed.'
+      else
+        redirect_to dashboard_categories_url, danger: @category.errors.messages[:base].first
+      end
     end
 
     private

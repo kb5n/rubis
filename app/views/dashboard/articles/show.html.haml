@@ -1,0 +1,96 @@
+%section.content-header
+  %h1= Article.model_name.human
+%section.content
+  = form_for @article, url: dashboard_articles_path, html: {class: 'form-horizontal'} do |f|
+    .box
+      .box-header
+        = link_to dashboard_articles_url, class: 'btn btn-sm btn-info pull-left' do
+          = t :back
+      .box-body
+        %dl.dl-horizontal
+          %dt= Article.human_attribute_name(:id)
+          %dd= @article.id
+          %dt= Article.human_attribute_name(:title)
+          %dd= @article.title
+          %dt= Article.human_attribute_name(:identifier)
+          %dd= @article.identifier
+          %dt= Category.human_attribute_name(:name)
+          %dd= @article.category.name
+          %dt= Article.human_attribute_name(:status)
+          %dd= @article.status
+          %dt= Article.human_attribute_name(:published_at)
+          %dd= l @article.published_at
+          %dt= Article.human_attribute_name(:created_at)
+          %dd= l @article.created_at
+          %dt= Article.human_attribute_name(:updated_at)
+          %dd= l @article.updated_at
+      .box-footer
+        .pull-right
+          .btn-group
+            = link_to edit_dashboard_article_path, class: 'btn btn-sm btn-success' do
+              = t :edit
+          .btn-group
+            %button.btn.btn-sm.btn-success{ type: 'button' }
+              = t :add_section
+            %button.btn.btn-sm.btn-success.dropdown-toggle{ data: { toggle: 'dropdown'}, type: 'button' }
+              %span.caret
+              %span.sr-only
+                Toggle Dropdown
+            %ui.dropdown-menu{ role: 'menu' }
+              %li
+                = link_to new_dashboard_section_path(article_id: @article.id, content_type: :paragraph) do
+                  %i.fa.fa-align-left
+                  = t :paragraph
+              %li
+                = link_to new_dashboard_section_path(article_id: @article.id, content_type: :figure) do
+                  %i.fa.fa-file-image-o
+                  = t :figure
+              %li
+                = link_to new_dashboard_section_path(article_id: @article.id, content_type: :link) do
+                  %i.fa.fa-external-link
+                  = t :link
+              %li
+                = link_to new_dashboard_section_path(article_id: @article.id, content_type: :location) do
+                  %i.fa.fa-map-o
+                  = t :location
+
+  .box
+    .box-body
+      - @article.sections.each do |section|
+        %strong
+          - case section.content_type
+          - when :paragrapth
+            %i.fa.fa-align-left
+          - when :figure
+            %i.fa.fa-file-image-o
+          - when :link
+            = link_to section.url do
+              %i.fa.fa-external-link
+          - when :location
+            %i.fa.fa-map-o
+          = section.title
+        = link_to dashboard_section_path(section), class: 'pull-right btn-box-tool', method: :delete, data: { confirm: 'Are you sure?' } do
+          %i.fa.fa-times
+        = link_to edit_dashboard_section_path, class: 'pull-right btn-box-tool' do
+          %i.fa.fa-edit
+        - unless section == @article.sections.last
+          = link_to edit_dashboard_section_path, class: 'pull-right btn-box-tool' do
+            %i.fa.fa-arrow-circle-down
+        - unless section == @article.sections.first
+          = link_to edit_dashboard_section_path, class: 'pull-right btn-box-tool' do
+            %i.fa.fa-arrow-circle-up
+        %p= section.description
+        %p.text-muted= section.source
+        - unless section.image_url.blank?
+          .row
+            .col-sm-3
+              = image_tag(section.image_url, class: 'img-responsive')
+            .col-sm-9
+        - if section.location?
+          .row
+            .col-sm-6
+              .googlemap
+                %iframe{src: section.url, frameborder: 0, allowfullscreen: true}
+            .col-sm-6
+        - unless section == @article.sections.last
+          %hr
