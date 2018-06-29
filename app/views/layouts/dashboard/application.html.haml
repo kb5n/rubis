@@ -64,9 +64,17 @@
                   = link_to dashboard_tags_url do
                     %i.fa.fa-tags
                     Tags
+              %ul.treeview-menu
+                %li
+                  = link_to dashboard_articles_url do
+                    %i.fa.fa-file-text-o
+                    Articles
 
       .content-wrapper
         %section.content
+          - flash.each do |type, msg|
+            %div{class: "callout callout-#{type}"}
+              = msg
           =yield
 
       %footer.main-footer

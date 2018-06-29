@@ -50,7 +50,7 @@ jobs:
       - run:
           name: run brakeman
           command: |
-            bundle exec brakeman -5 -A -w 1 -z
+            bundle exec brakeman -5 -w 1 -z
 
       # run tests!
       - run:

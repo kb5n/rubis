@@ -1,30 +1,4 @@
 %section.content-header
   %h1 Category
 %section.content
-  .box.box-info
-    = form_for @category, url: dashboard_categories_path, html: {class: 'form-horizontal'} do |f|
-      .box-header
-        = link_to dashboard_categories_url, class: 'btn btn-sm btn-info pull-left' do
-          Back
-      .box-body
-        .form-group{ class: "#{'has-error' if @category.errors.full_messages_for(:name).any?}" }
-          = f.label :name, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_field :name, class: 'form-control'
-            - @category.errors.full_messages_for(:name).each do |message|
-              %span.help-block= message
-        .form-group{ class: "#{'has-error' if @category.errors.full_messages_for(:identifier).any?}" }
-          = f.label :identifier, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_field :identifier, class: 'form-control'
-            - @category.errors.full_messages_for(:identifier).each do |message|
-              %span.help-block= message
-        .form-group{ class: "#{'has-error' if @category.errors.full_messages_for(:description).any?}" }
-          = f.label :description, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_area :description, class: 'form-control'
-            - @category.errors.full_messages_for(:description).each do |message|
-              %span.help-block= message
-
-      .box-footer
-        = f.submit 'Save', class: 'btn btn-sm btn-success pull-right'
+  = render 'form'

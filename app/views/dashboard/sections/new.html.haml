@@ -1,0 +1,56 @@
+%section.content-header
+  %h1
+    = @section.content_type.capitalize
+    Section
+%section.content
+  = form_for @section, url: dashboard_sections_path, html: {class: 'form-horizontal'} do |f|
+    = f.hidden_field :article_id
+    = f.hidden_field :content_type
+    .box
+      .box-header
+        = link_to dashboard_article_path(@section.article), class: 'btn btn-sm btn-info pull-left' do
+          Back
+      .box-body
+        .form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:title).any?}" }
+          = f.label :title, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :title, class: 'form-control'
+            - @section.errors.full_messages_for(:title).each do |message|
+              %span.help-block= message
+        .form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:description).any?}" }
+          = f.label :description, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_area :description, class: 'form-control'
+            - @section.errors.full_messages_for(:description).each do |message|
+              %span.help-block= message
+        .form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:url).any?}" }
+          = f.label :url, class: 'col-sm-2 control-label'
+          .col-sm-10
+            .input-group
+              = f.text_field :url, class: 'form-control'
+              .input-group-btn
+                .btn.btn-info{type: 'button'}
+                  Load
+            - @section.errors.full_messages_for(:url).each do |message|
+              %span.help-block= message
+        .form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:image_url).any?}" }
+          = f.label :image_url, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :image_url, class: 'form-control'
+            - @section.errors.full_messages_for(:image_url).each do |message|
+              %span.help-block= message
+        .form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:source).any?}" }
+          = f.label :source, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :source, class: 'form-control'
+            - @section.errors.full_messages_for(:source).each do |message|
+              %span.help-block= message
+        -# .form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:status).any?}" }
+        -#   = f.label :status, class: 'col-sm-2 control-label'
+        -#   .col-sm-10
+        -#     -# = f.select :status, Article.statuses.map{ |k, v| [t(k), v]}, {}, class: 'form-control'
+        -#     = f.select :status, Article.statuses.keys.to_a, {}, class: 'form-control'
+        -#     - @section.errors.full_messages_for(:status).each do |message|
+        -#       %span.help-block= message
+      .box-footer
+        = f.submit 'Create', class: 'btn btn-sm btn-success pull-right'

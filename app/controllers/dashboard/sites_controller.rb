@@ -11,7 +11,7 @@ module Dashboard
     # PATCH/PUT /dashboard/tags/1
     def update
       if @site.update(site_params)
-        redirect_to dashboard_site_url, notice: 'Site was successfully updated.'
+        redirect_to dashboard_site_url, success: 'Site was successfully updated.'
       else
         render :edit
       end
@@ -21,7 +21,7 @@ module Dashboard
 
     # Only allow a trusted parameter "white list" through.
     def site_params
-      params.require(:site).permit(:title, :description)
+      params.require(:site).permit(:title, :description, :started_at, :copyright)
     end
   end
 end

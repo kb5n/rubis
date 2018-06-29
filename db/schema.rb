@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_111206) do
+ActiveRecord::Schema.define(version: 2018_06_26_020514) do
+
+  create_table "article_tags", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_article_tags_on_article_id"
+    t.index ["tag_id"], name: "index_article_tags_on_tag_id"
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "identifier", null: false
+    t.integer "status", null: false
+    t.datetime "published_at", default: "2018-06-29 07:11:47", null: false
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_articles_on_category_id"
+    t.index ["identifier"], name: "index_articles_on_identifier", unique: true
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -21,9 +42,25 @@ ActiveRecord::Schema.define(version: 2018_06_25_111206) do
     t.index ["identifier"], name: "index_categories_on_identifier", unique: true
   end
 
+  create_table "sections", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "content_type"
+    t.string "title"
+    t.integer "sequence", null: false
+    t.text "description"
+    t.text "url"
+    t.text "image_url"
+    t.string "source"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_sections_on_article_id"
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string "title", null: false
     t.string "description"
+    t.string "copyright", null: false
+    t.date "started_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

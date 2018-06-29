@@ -1,7 +1,7 @@
 %section.content-header
   %h1 Categories
 %section.content
-  .box.box-info
+  .box
     .box-header.with-border
       = link_to new_dashboard_category_path, class: 'btn btn-sm btn-success pull-left' do
         Create new category
@@ -10,20 +10,20 @@
         %table.table.no-margin
           %thead
             %tr
-              %th id
               %th name
               %th identifier
-              %th show
+              %th articles
               %th edit
               %th destroy
           %tbody
             - @categories.each do |category|
               %tr
-                %td= category.id
                 %td= category.name
                 %td= category.identifier
-                %td= link_to 'Show', dashboard_category_path(category), class: 'btn btn-xs btn-info'
+                %td
+                  %span.badge
+                    = category.articles.published.count
+                    != '/'
+                    = category.articles.count
                 %td= link_to 'Edit', edit_dashboard_category_path(category), class: 'btn btn-xs btn-success'
                 %td= link_to 'Destroy', dashboard_category_path(category), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
-
-    .box-footer

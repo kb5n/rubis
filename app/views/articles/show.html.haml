@@ -1,0 +1,53 @@
+.ui.segment
+  %h2.ui.header
+    = @article.title
+    .sub.header
+      = @article.published_at.strftime('%Y/%m/%d')
+  = link_to category_path(@article.category.identifier) do
+    .ui.violet.ribbon.label
+      = @article.category.name
+  - @article.tags.each do |tag|
+    = link_to tag_path(tag.identifier) do
+      .ui.pink.tag.label
+        = tag.name
+  - @article.sections.each do |section|
+    .ui.hidden.divider
+    .ui.main.container
+      - if section.paragraph?
+        - unless section.title.blank?
+          %h3.ui.header= section.title
+        %p= section.description
+
+      - if section.figure?
+        .ui.fluid.card
+          .image= image_tag(section.image_url)
+          - unless section.description.blank?
+            .content
+              .description= section.title
+              - unless section.description.blank?
+                .meta= section.description
+
+      - if section.link?
+        .ui.fluid.card
+          .content
+            - unless section.image_url.blank?
+              .right.floated.small.ui.image
+                = link_to section.url do
+                  = image_tag(section.image_url)
+            .header
+              = link_to section.url do
+                = section.title
+            - unless section.source.blank?
+              .meta= section.source
+            - unless section.description.blank?
+              .description= section.description
+
+      - if section.location?
+        .ui.fluid.card
+          .image
+            .googlemap
+              %iframe{src: section.url, frameborder: 0, allowfullscreen: true}
+          - unless section.url.blank?
+            .content
+              .header= section.title
+              .description= section.description

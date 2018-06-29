@@ -1,15 +1,12 @@
 module Dashboard
   class TagsController < Dashboard::ApplicationController
-    before_action :set_tag, only: %i[show edit update destroy]
+    before_action :set_tag, only: %i[edit update destroy]
 
     layout 'dashboard/application'
     # GET /dashboard/tags
     def index
       @tags = Tag.all
     end
-
-    # GET /dashboard/tags/1
-    def show; end
 
     # GET /dashboard/tags/new
     def new
@@ -24,7 +21,7 @@ module Dashboard
       @tag = Tag.new(tag_params)
 
       if @tag.save
-        redirect_to dashboard_tags_url, notice: 'Tag was successfully created.'
+        redirect_to dashboard_tags_url, success: 'Tag was successfully created.'
       else
         render :new
       end
@@ -33,7 +30,7 @@ module Dashboard
     # PATCH/PUT /dashboard/tags/1
     def update
       if @tag.update(tag_params)
-        redirect_to dashboard_tags_url, notice: 'Tag was successfully updated.'
+        redirect_to dashboard_tags_url, success: 'Tag was successfully updated.'
       else
         render :edit
       end
@@ -42,7 +39,7 @@ module Dashboard
     # DELETE /dashboard/tags/1
     def destroy
       @tag.destroy
-      redirect_to dashboard_tags_url, notice: 'Tag was successfully destroyed.'
+      redirect_to dashboard_tags_url, success: 'Tag was successfully destroyed.'
     end
 
     private

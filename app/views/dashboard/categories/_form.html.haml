@@ -1,0 +1,29 @@
+.box
+  = form_for [:dashboard, @category], html: {class: 'form-horizontal'} do |f|
+    .box-header
+      = link_to dashboard_categories_path, class: 'btn btn-sm btn-info pull-left' do
+        Back
+    .box-body
+      - unless @category.id.blank?
+        .form-group
+          = f.label :id, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :id, disabled: true, class: 'form-control'
+      .form-group{ class: "#{'has-error' if @category.errors.full_messages_for(:name).any?}" }
+        = f.label :name, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :name, class: 'form-control'
+          = render 'dashboard/shared/error_message', item: @category, column: :name
+      .form-group{ class: "#{'has-error' if @category.errors.full_messages_for(:identifier).any?}" }
+        = f.label :identifier, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :identifier, class: 'form-control'
+          = render 'dashboard/shared/error_message', item: @category, column: :identifier
+      .form-group{ class: "#{'has-error' if @category.errors.full_messages_for(:description).any?}" }
+        = f.label :description, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :description, class: 'form-control'
+          = render 'dashboard/shared/error_message', item: @category, column: :description
+
+    .box-footer
+      = f.submit class: 'btn btn-sm btn-success pull-right'

@@ -1,7 +1,7 @@
 %section.content-header
   %h1 Site
 %section.content
-  .box.box-info
+  .box
     = form_for @site, url: dashboard_site_path, html: {class: 'form-horizontal'} do |f|
       .box-header
         = link_to dashboard_site_url, class: 'btn btn-sm btn-info pull-left' do
@@ -20,13 +20,13 @@
             - @site.errors.full_messages_for(:description).each do |message|
               %span.help-block= message
         .form-group
-          = f.label :created_at, class: 'col-sm-2 control-label'
+          = f.label :copyright, class: 'col-sm-2 control-label'
           .col-sm-10
-            = f.text_field :created_at, readonly: true, class: 'form-control'
+            = f.text_field :copyright, class: 'form-control'
         .form-group
-          = f.label :updated_at, class: 'col-sm-2 control-label'
+          = f.label :started_at, class: 'col-sm-2 control-label'
           .col-sm-10
-            = f.text_field :updated_at, readonly: true, class: 'form-control'
+            = f.text_field :started_at, class: 'form-control pull-right', value: I18n.l(@site.started_at)
 
       .box-footer
-        = f.submit 'Update', class: 'btn btn-sm btn-success pull-right'
+        = f.submit class: 'btn btn-sm btn-success pull-right'
