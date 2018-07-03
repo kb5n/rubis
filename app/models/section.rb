@@ -5,5 +5,5 @@ class Section < ApplicationRecord
 
   validates :description, presence: true, if: :paragraph?
   validates :image_url, presence: true, if: :image?
-  validates :url, presence: true, if: (:link? or :location?)
+  validates :url, presence: true, if: (:link? || :location?)
 end
