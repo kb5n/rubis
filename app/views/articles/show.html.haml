@@ -18,7 +18,7 @@
           %h3.ui.header= section.title
         %p= section.description
 
-      - if section.figure?
+      - if section.image?
         .ui.fluid.card
           .image= image_tag(section.image_url)
           - unless section.description.blank?

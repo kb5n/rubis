@@ -5,9 +5,10 @@ ja:
   add_article: 記事を追加する
   add_section: セクションを追加する
   paragraph: 段落
-  figure: 画像
+  image: 画像
   link: リンク
   location: 地図
+  share_tag: 共有タグ
   activerecord:
     models:
         article: 記事

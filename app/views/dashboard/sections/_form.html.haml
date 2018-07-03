@@ -1,0 +1,18 @@
+.box
+  = form_for [:dashboard, @section], html: {class: 'form-horizontal'}, multipart:  @section.image? do |f|
+    = f.hidden_field :article_id
+    = f.hidden_field :content_type
+    .box-header
+      = link_to dashboard_article_path(@section.article), class: 'btn btn-sm btn-info pull-left' do
+        Back
+    .box-body
+      - if @section.paragraph?
+        = render 'form_paragraph', f: f
+      - elsif @section.image?
+        = render 'form_image', f: f
+      - elsif @section.link?
+        = render 'form_link', f: f
+      - elsif @section.location?
+        = render 'form_location', f: f
+    .box-footer
+      = f.submit 'Create', class: 'btn btn-sm btn-success pull-right'

@@ -42,9 +42,9 @@
                   %i.fa.fa-align-left
                   = t :paragraph
               %li
-                = link_to new_dashboard_section_path(article_id: @article.id, content_type: :figure) do
+                = link_to new_dashboard_section_path(article_id: @article.id, content_type: :image) do
                   %i.fa.fa-file-image-o
-                  = t :figure
+                  = t :image
               %li
                 = link_to new_dashboard_section_path(article_id: @article.id, content_type: :link) do
                   %i.fa.fa-external-link
@@ -57,30 +57,36 @@
   .box
     .box-body
       - @article.sections.each do |section|
-        %strong
-          - case section.content_type
-          - when :paragrapth
-            %i.fa.fa-align-left
-          - when :figure
-            %i.fa.fa-file-image-o
-          - when :link
-            = link_to section.url do
-              %i.fa.fa-external-link
-          - when :location
-            %i.fa.fa-map-o
-          = section.title
-        = link_to dashboard_section_path(section), class: 'pull-right btn-box-tool', method: :delete, data: { confirm: 'Are you sure?' } do
-          %i.fa.fa-times
-        = link_to edit_dashboard_section_path, class: 'pull-right btn-box-tool' do
-          %i.fa.fa-edit
-        - unless section == @article.sections.last
-          = link_to edit_dashboard_section_path, class: 'pull-right btn-box-tool' do
-            %i.fa.fa-arrow-circle-down
-        - unless section == @article.sections.first
-          = link_to edit_dashboard_section_path, class: 'pull-right btn-box-tool' do
-            %i.fa.fa-arrow-circle-up
-        %p= section.description
-        %p.text-muted= section.source
+        .row
+          .col-sm-6
+            .btn-box-tool
+              - if section.paragraph?
+                %i.fa.fa-align-left
+              - elsif section.image?
+                %i.fa.fa-file-image-o
+              - elsif section.link?
+                = link_to section.url do
+                  %i.fa.fa-external-link
+              - elsif section.location?
+                %i.fa.fa-map-o
+          .col-sm-6
+            = link_to dashboard_section_path(section), class: 'pull-right btn-box-tool', method: :delete, data: { confirm: 'Are you sure?' } do
+              %i.fa.fa-times
+            = link_to edit_dashboard_section_path(section), class: 'pull-right btn-box-tool' do
+              %i.fa.fa-edit
+            - unless section == @article.sections.last
+              = link_to edit_dashboard_section_path(section), class: 'pull-right btn-box-tool' do
+                %i.fa.fa-arrow-circle-down
+            - unless section == @article.sections.first
+              = link_to edit_dashboard_section_path(section), class: 'pull-right btn-box-tool' do
+                %i.fa.fa-arrow-circle-up
+        - unless section.title.blank?
+          %strong
+            = section.title
+        - unless section.description.blank?
+          %p= section.description
+        - unless section.source.blank?
+          %p.text-muted= section.source
         - unless section.image_url.blank?
           .row
             .col-sm-3
