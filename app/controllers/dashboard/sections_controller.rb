@@ -15,10 +15,10 @@ module Dashboard
     # POST /dashboard/sections
     def create
       @section = Section.new(section_params)
-      @section.sequence = article.sections.count
+      @section.sequence = @section.article.sections.count
 
       if @section.save
-        redirect_to dashboard_article_url(article), success: 'Section was successfully created.'
+        redirect_to [:dashboard, @section.article], success: 'Section was successfully created.'
       else
         render :new
       end

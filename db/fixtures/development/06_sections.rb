@@ -9,7 +9,7 @@
       when :paragraph then
         s.title = Faker::Lorem.sentence
         s.description = Faker::Lorem.paragraphs(3).join("\n")
-      when :figure then
+      when :image then
         s.image_url = 'sample' + [*1..10].sample.to_s + '.jpg'
         s.title = Faker::Lorem.sentence
         s.description = Faker::Lorem.sentence

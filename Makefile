@@ -3,14 +3,32 @@ setup-staging:
 
 db-reset:
 	rm -f db/*.sqlite3
+	bundle exec rails db:create:all
 	bundle exec rails db:migrate
 	bundle exec rails db:seed_fu
+
+console:
+	bundle exec rails console
+
+dbconsole:
+	bundle exec rails dbconsole
+
+routes:
+	bundle exec rails routes
 
 clear-cache:
 	bundle exec rake tmp:cache:clear
 
-check:
+rubocop:
 	bundle exec rubocop
+
+brakeman:
+	bundle exec brakeman -5 -w 1 -z
+
+rspec:
+	bundle exec rspec --format documentation
+
+check: rubocop brakeman rspec
 
 up: clear-cache
 	foreman start
