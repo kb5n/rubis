@@ -1,5 +1,5 @@
-.box
-  = form_for [:dashboard, @tag], html: {class: 'form-horizontal'} do |f|
+= form_with model: [:dashboard, @tag], html: {class: 'form-horizontal'} do |f|
+  .box
     .box-header
       = link_to dashboard_tags_url, class: 'btn btn-sm btn-info pull-left' do
         Back

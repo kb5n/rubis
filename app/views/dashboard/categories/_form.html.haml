@@ -1,8 +1,8 @@
-.box
-  = form_for [:dashboard, @category], html: {class: 'form-horizontal'} do |f|
+= form_with model: [:dashboard, @category], html: {class: 'form-horizontal'} do |f|
+  .box
     .box-header
       = link_to dashboard_categories_path, class: 'btn btn-sm btn-info pull-left' do
-        Back
+        = t :back
     .box-body
       - unless @category.id.blank?
         .form-group

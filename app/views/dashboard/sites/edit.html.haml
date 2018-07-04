@@ -1,8 +1,8 @@
 %section.content-header
   %h1 Site
 %section.content
-  .box
-    = form_for @site, url: dashboard_site_path, html: {class: 'form-horizontal'} do |f|
+  = form_with model: [:dashboard, @site], html: {class: 'form-horizontal'} do |f|
+    .box
       .box-header
         = link_to dashboard_site_url, class: 'btn btn-sm btn-info pull-left' do
           Back
