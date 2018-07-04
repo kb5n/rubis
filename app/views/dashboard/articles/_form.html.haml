@@ -1,4 +1,4 @@
-= form_for [:dashboard, @article], html: {class: 'form-horizontal'} do |f|
+= form_with model: [:dashboard, @article], html: {class: 'form-horizontal'} do |f|
   .box
     .box-header
       = link_to dashboard_articles_url, class: 'btn btn-sm btn-info pull-left' do

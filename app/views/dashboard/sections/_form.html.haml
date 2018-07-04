@@ -1,5 +1,5 @@
-.box
-  = form_for [:dashboard, @section], html: {class: 'form-horizontal'}, multipart:  @section.image? do |f|
+= form_with model: [:dashboard, @section], html: {class: 'form-horizontal'}, multipart: @section.image? do |f|
+  .box
     = f.hidden_field :article_id
     = f.hidden_field :content_type
     .box-header

@@ -6,8 +6,6 @@
     = csrf_meta_tags
     = stylesheet_link_tag 'dashboard/application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    %link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css")
-    %link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css")
   %body.hold-transition.login-page
     .login-box
       .login-logo
@@ -18,7 +16,7 @@
           Sign in to start your session
         - flash.each do |type, msg|
           %div{class: "alert alert-#{type}"}= msg
-        = form_for @user, url: dashboard_sessions_path do |f|
+        = form_with model: @user, url: dashboard_sessions_path do |f|
           .form-group.has-feedback
             = f.text_field :email, class: 'form-control', placeholder: 'Email'
             %i.fa.fa-envelope-o.form-control-feedback
@@ -27,7 +25,5 @@
             %i.fa.fa-lock.form-control-feedback
           .row
             .col-xs-8
-              .checkbox.icheck
-                %label
             .col-xs-4
               = f.submit 'Login', class: 'btn btn-success btn-block'
