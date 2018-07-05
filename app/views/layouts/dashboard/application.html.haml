@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ :content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %title Dashboard
     = csrf_meta_tags
     = stylesheet_link_tag 'dashboard/application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -73,9 +73,9 @@
       .content-wrapper
         %section.content
           - flash.each do |type, msg|
-            %div{class: "callout callout-#{type}"}
+            %div{ class: "callout callout-#{type}" }
               = msg
-          =yield
+          = yield
 
       %footer.main-footer
         .pull-right.hidden.xs

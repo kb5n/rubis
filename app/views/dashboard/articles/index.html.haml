@@ -21,16 +21,13 @@
             - @articles.each do |article|
               %tr
                 %td
-                  -if article.published?
+                  - if article.published?
                     .label.label-success Public
-                  -else
+                  - else
                     .label.label-default Draft
                 %td= article.category.name
                 %td= article.title
-                -# %td= article.published_at.strftime('%Y/%m/%d %H:%M:%S')
                 %td= l article.published_at
                 %td= link_to 'Show', dashboard_article_path(article), class: 'btn btn-xs btn-info'
                 %td= link_to 'Edit', edit_dashboard_article_path(article), class: 'btn btn-xs btn-success'
                 %td= link_to 'Destroy', dashboard_article_path(article), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
-
-    .box-footer

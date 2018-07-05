@@ -23,6 +23,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'foreman'
+  gem 'haml-lint'
   gem 'rspec-rails'
   gem 'rubocop'
 end

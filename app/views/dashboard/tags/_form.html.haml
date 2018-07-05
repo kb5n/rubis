@@ -1,25 +1,23 @@
-= form_with model: [:dashboard, @tag], html: {class: 'form-horizontal'} do |f|
+= form_with model: [:dashboard, tag], html: { class: 'form-horizontal' } do |f|
   .box
     .box-header
       = link_to dashboard_tags_url, class: 'btn btn-sm btn-info pull-left' do
-        Back
+        = t :back
     .box-body
-      - unless @tag.id.blank?
+      - if f.object.id.present?
         .form-group
           = f.label :id, class: 'col-sm-2 control-label'
           .col-sm-10
             = f.text_field :id, disabled: true, class: 'form-control'
-      .form-group{ class: "#{'has-error' if @tag.errors.full_messages_for(:name).any?}" }
+      .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:name).any?) }
         = f.label :name, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.text_field :name, class: 'form-control'
-          - @tag.errors.full_messages_for(:name).each do |message|
-            %span.help-block= message
-      .form-group{ class: "#{'has-error' if @tag.errors.full_messages_for(:identifier).any?}" }
+          = render 'dashboard/shared/error_message', item: f.object, column: :name
+      .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:identifier).any?) }
         = f.label :identifier, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.text_field :identifier, class: 'form-control'
-          - @tag.errors.full_messages_for(:identifier).each do |message|
-            %span.help-block= message
+          = render 'dashboard/shared/error_message', item: f.object, column: :identifier
     .box-footer
       = f.submit class: 'btn btn-sm btn-success pull-right'

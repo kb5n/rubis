@@ -31,7 +31,7 @@
         .btn-group
           %button.btn.btn-sm.btn-success{ type: 'button' }
             = t :add_section
-          %button.btn.btn-sm.btn-success.dropdown-toggle{ data: { toggle: 'dropdown'}, type: 'button' }
+          %button.btn.btn-sm.btn-success.dropdown-toggle{ data: { toggle: 'dropdown' }, type: 'button' }
             %span.caret
             %span.sr-only
               Toggle Dropdown
@@ -52,7 +52,6 @@
               = link_to new_dashboard_section_path(article_id: @article.id, content_type: :location) do
                 %i.fa.fa-map-o
                 = t :location
-
   .box
     .box-body
       - @article.sections.each do |section|
@@ -79,14 +78,14 @@
             - unless section == @article.sections.first
               = link_to edit_dashboard_section_path(section), class: 'pull-right btn-box-tool' do
                 %i.fa.fa-arrow-circle-up
-        - unless section.title.blank?
+        - if section.title.present?
           %strong
             = section.title
-        - unless section.description.blank?
+        - if section.description.present?
           %p= section.description
-        - unless section.source.blank?
+        - if section.source.present?
           %p.text-muted= section.source
-        - unless section.image_url.blank?
+        - if section.image_url.present?
           .row
             .col-sm-3
               = image_tag(section.image_url, class: 'img-responsive')
@@ -95,7 +94,7 @@
           .row
             .col-sm-6
               .googlemap
-                %iframe{src: section.url, frameborder: 0, allowfullscreen: true}
+                %iframe{ src: section.url, frameborder: 0, allowfullscreen: true }
             .col-sm-6
         - unless section == @article.sections.last
           %hr

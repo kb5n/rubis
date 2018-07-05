@@ -25,10 +25,13 @@ rubocop:
 brakeman:
 	bundle exec brakeman -5 -w 1 -z
 
+haml-lint:
+	bundle exec haml-lint
+
 rspec:
 	bundle exec rspec --format documentation
 
-check: rubocop brakeman rspec
+check: rubocop brakeman haml-lint rspec
 
 up: clear-cache
 	foreman start
