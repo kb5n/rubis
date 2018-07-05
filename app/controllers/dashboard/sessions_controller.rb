@@ -13,7 +13,7 @@ module Dashboard
       if @user
         redirect_to dashboard_root_path, success: 'Welcome'
       else
-        redirect_to dashboard_login_path, error: 'Certification failed.'
+        redirect_to dashboard_login_path, danger: 'Certification failed.'
       end
     end
 

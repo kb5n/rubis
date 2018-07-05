@@ -48,6 +48,11 @@ jobs:
             bundle exec rubocop
 
       - run:
+          name: run haml-lint
+          command: |
+            bundle exec haml-lint
+
+      - run:
           name: run brakeman
           command: |
             bundle exec brakeman -5 -w 1 -z

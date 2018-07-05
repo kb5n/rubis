@@ -1,10 +1,10 @@
-.form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:title).any?}" }
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:title).any?) }
   = f.label :title, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :title, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: @section, column: :title
-.form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:description).any?}" }
+    = render 'dashboard/shared/error_message', item: f.object, column: :title
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:description).any?) }
   = f.label :description, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_area :description, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: @section, column: :description
+    = render 'dashboard/shared/error_message', item: f.object, column: :description

@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ :content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %title
       = @site.title
     = csrf_meta_tags
@@ -14,7 +14,7 @@
     %h1.ui.center.aligned.header
       .content
         = link_to @site.title, root_path
-        - unless @site.description.blank?
+        - if @site.description.present?
           .sub.header
             = @site.description
 
@@ -24,15 +24,15 @@
       .ui.breadcrumb
         = link_to root_path do
           %i.home.icon
-        - unless @tag.blank?
+        - if @tag.present?
           %i.right.angle.icon.divider
           .section.active
             = link_to @tag.name, category_path(@tag.identifier), class: 'section'
-        - unless @category.blank?
+        - if @category.present?
           %i.right.angle.icon.divider
           .section.active
             = link_to @category.name, category_path(@category.identifier), class: 'section'
-        - unless @article.blank?
+        - if @article.present?
           %i.right.angle.icon.divider
           = link_to @article.category.name, category_path(@article.category.identifier), class: 'section'
           %i.right.angle.icon.divider
@@ -53,7 +53,7 @@
             Categories
           .ui.labels
             - @categories.each do |category|
-              - unless category.public_articles.count == 0
+              - unless category.public_articles.count.zero?
                 = link_to category_path(category.identifier), class: 'ui violet label' do
                   = category.name
                   .detail
@@ -64,7 +64,7 @@
             Tags
           .ui.tag.labels
             - @tags.each do |tag|
-              - unless tag.public_articles.count == 0
+              - unless tag.public_articles.count.zero?
                 = link_to tag_path(tag.identifier), class: 'ui pink label' do
                   = tag.name
                   .detail

@@ -1,32 +1,29 @@
-.form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:title).any?}" }
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:title).any?) }
   = f.label :title, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :title, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: @section, column: :title
-.form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:description).any?}" }
+    = render 'dashboard/shared/error_message', item: f.object, column: :title
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:description).any?) }
   = f.label :description, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_area :description, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: @section, column: :description
-.form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:url).any?}" }
+    = render 'dashboard/shared/error_message', item: f.object, column: :description
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:url).any?) }
   = f.label :url, class: 'col-sm-2 control-label'
   .col-sm-10
     .input-group
       = f.text_field :url, class: 'form-control'
       .input-group-btn
-        .btn.btn-info{type: 'button'}
+        .btn.btn-info{ type: 'button' }
           Load
-    - @section.errors.full_messages_for(:url).each do |message|
-      %span.help-block= message
-.form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:image_url).any?}" }
+    = render 'dashboard/shared/error_message', item: f.object, column: :url
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:image_url).any?) }
   = f.label :image_url, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :image_url, class: 'form-control'
-    - @section.errors.full_messages_for(:image_url).each do |message|
-      %span.help-block= message
-.form-group{ class: "#{'has-error' if @section.errors.full_messages_for(:source).any?}" }
+    = render 'dashboard/shared/error_message', item: f.object, column: :image_url
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:source).any?) }
   = f.label :source, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :source, class: 'form-control'
-    - @section.errors.full_messages_for(:source).each do |message|
-      %span.help-block= message
+    = render 'dashboard/shared/error_message', item: f.object, column: :source

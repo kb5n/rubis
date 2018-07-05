@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ :content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %title Dashboard
     = csrf_meta_tags
     = stylesheet_link_tag 'dashboard/application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -14,8 +14,9 @@
       .login-box-body
         %p.login-box-msg
           Sign in to start your session
-        - flash.each do |type, msg|
-          %div{class: "alert alert-#{type}"}= msg
+          - flash.each do |type, msg|
+            %div{ class: "callout callout-#{type}" }
+              = msg
         = form_with model: @user, url: dashboard_sessions_path do |f|
           .form-group.has-feedback
             = f.text_field :email, class: 'form-control', placeholder: 'Email'

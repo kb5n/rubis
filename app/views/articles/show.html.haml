@@ -2,7 +2,7 @@
   %h2.ui.header
     = @article.title
     .sub.header
-      = @article.published_at.strftime('%Y/%m/%d')
+      = @article.published_at
   = link_to category_path(@article.category.identifier) do
     .ui.violet.ribbon.label
       = @article.category.name
@@ -14,40 +14,37 @@
     .ui.hidden.divider
     .ui.main.container
       - if section.paragraph?
-        - unless section.title.blank?
+        - if section.title.present?
           %h3.ui.header= section.title
         %p= section.description
-
       - if section.image?
         .ui.fluid.card
           .image= image_tag(section.image_url)
-          - unless section.description.blank?
+          - if section.description.present?
             .content
               .description= section.title
-              - unless section.description.blank?
+              - if section.description.present?
                 .meta= section.description
-
       - if section.link?
         .ui.fluid.card
           .content
-            - unless section.image_url.blank?
+            - if section.image_url.present?
               .right.floated.small.ui.image
                 = link_to section.url do
                   = image_tag(section.image_url)
             .header
               = link_to section.url do
                 = section.title
-            - unless section.source.blank?
+            - if section.source.present?
               .meta= section.source
-            - unless section.description.blank?
+            - if section.description.present?
               .description= section.description
-
       - if section.location?
         .ui.fluid.card
           .image
             .googlemap
-              %iframe{src: section.url, frameborder: 0, allowfullscreen: true}
-          - unless section.url.blank?
+              %iframe{ src: section.url, frameborder: 0, allowfullscreen: true }
+          - if section.url.present?
             .content
               .header= section.title
               .description= section.description

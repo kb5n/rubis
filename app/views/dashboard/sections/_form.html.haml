@@ -1,18 +1,18 @@
-= form_with model: [:dashboard, @section], html: {class: 'form-horizontal'}, multipart: @section.image? do |f|
+= form_with model: [:dashboard, section], html: { class: 'form-horizontal' }, multipart: section.image? do |f|
   .box
     = f.hidden_field :article_id
     = f.hidden_field :content_type
     .box-header
-      = link_to dashboard_article_path(@section.article), class: 'btn btn-sm btn-info pull-left' do
+      = link_to dashboard_article_path(f.object.article), class: 'btn btn-sm btn-info pull-left' do
         Back
     .box-body
-      - if @section.paragraph?
+      - if f.object.paragraph?
         = render 'form_paragraph', f: f
-      - elsif @section.image?
+      - elsif f.object.image?
         = render 'form_image', f: f
-      - elsif @section.link?
+      - elsif f.object.link?
         = render 'form_link', f: f
-      - elsif @section.location?
+      - elsif f.object.location?
         = render 'form_location', f: f
     .box-footer
       = f.submit 'Create', class: 'btn btn-sm btn-success pull-right'
