@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser.svg)](https://circleci.com/gh/ozhaan/rubis)
+[![CircleCI](https://circleci.com/gh/ozhaan/rubis.svg?style=svg)](https://circleci.com/gh/ozhaan/rubis)
 
 ```
 make db-init
