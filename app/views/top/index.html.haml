@@ -15,11 +15,11 @@
             = tag.name
     .ui.hidden.divider
     .ui.main.container
-      - if article.sections.image.count != 0
+      - unless article.sections.image.size.zero?
         .ui.fluid.card
           .image
             = image_tag(article.sections.image.first.image_url)
-      - if article.sections.paragraph.count != 0
+      - unless article.sections.paragraph.size.zero?
         %p= article.sections.paragraph.first.description
 
     .ui.hidden.divider
