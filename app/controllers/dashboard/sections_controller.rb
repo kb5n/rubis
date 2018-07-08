@@ -49,7 +49,7 @@ module Dashboard
 
     # Only allow a trusted parameter "white list" through.
     def section_params
-      params.require(:section).permit(:article_id, :content_type, :title, :description, :url, :image, :og_title, :og_description, :og_site_name, :og_image)
+      params.require(:section).permit(:article_id, :content_type, :title, :description, :url, :image_url, :source)
     end
   end
 end
