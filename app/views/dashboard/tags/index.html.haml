@@ -22,8 +22,8 @@
                 %td= tag.identifier
                 %td
                   %span.badge
-                    = tag.articles.published.count
+                    = tag.articles.published.size
                     != '/'
-                    = tag.articles.count
+                    = tag.articles.size
                 %td= link_to 'Edit', edit_dashboard_tag_path(tag), class: 'btn btn-xs btn-success'
                 %td= link_to 'Destroy', dashboard_tag_path(tag), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
