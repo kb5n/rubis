@@ -26,6 +26,7 @@ group :development, :test do
   gem 'faker'
   gem 'foreman'
   gem 'haml-lint'
+  gem 'rails-env-credentials'
   gem 'rspec-rails'
   gem 'rubocop'
 end
