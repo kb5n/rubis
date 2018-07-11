@@ -22,8 +22,8 @@
                 %td= category.identifier
                 %td
                   %span.badge
-                    = category.articles.published.count
+                    = category.articles.published.size
                     != '/'
-                    = category.articles.count
+                    = category.articles.size
                 %td= link_to 'Edit', edit_dashboard_category_path(category), class: 'btn btn-xs btn-success'
                 %td= link_to 'Destroy', dashboard_category_path(category), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
