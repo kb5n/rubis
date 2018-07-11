@@ -37,19 +37,19 @@
               Toggle Dropdown
           %ui.dropdown-menu{ role: 'menu' }
             %li
-              = link_to new_dashboard_section_path(article_id: @article.id, content_type: :paragraph) do
+              = link_to new_dashboard_article_section_path(article_id: @article.id, content_type: :paragraph) do
                 %i.fa.fa-align-left
                 = t :paragraph
             %li
-              = link_to new_dashboard_section_path(article_id: @article.id, content_type: :image) do
+              = link_to new_dashboard_article_section_path(article_id: @article.id, content_type: :image) do
                 %i.fa.fa-file-image-o
                 = t :image
             %li
-              = link_to new_dashboard_section_path(article_id: @article.id, content_type: :link) do
+              = link_to new_dashboard_article_section_path(article_id: @article.id, content_type: :link) do
                 %i.fa.fa-external-link
                 = t :link
             %li
-              = link_to new_dashboard_section_path(article_id: @article.id, content_type: :location) do
+              = link_to new_dashboard_article_section_path(article_id: @article.id, content_type: :location) do
                 %i.fa.fa-map-o
                 = t :location
   .box
@@ -79,16 +79,24 @@
               = link_to edit_dashboard_section_path(section), class: 'pull-right btn-box-tool' do
                 %i.fa.fa-arrow-circle-up
         - if section.title.present?
-          %strong
-            = section.title
+          %strong= section.title
         - if section.description.present?
           %p= section.description
-        - if section.source.present?
-          %p.text-muted= section.source
-        - if section.image_url.present?
+        - if section.image.present?
           .row
             .col-sm-3
-              = image_tag(section.image_url, class: 'img-responsive')
+              = attachment_image_tag section, :image, class: 'img-responsive'
+            .col-sm-9
+        - if section.og_title.present?
+          %strong= section.og_title
+        - if section.og_description.present?
+          %p= section.og_description
+        - if section.og_site_name.present?
+          %p.text-muted= section.og_site_name
+        - if section.og_image.present?
+          .row
+            .col-sm-3
+              %img.img-responsive{ src: section.og_image }
             .col-sm-9
         - if section.location?
           .row

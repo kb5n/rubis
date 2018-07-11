@@ -3,3 +3,5 @@ exclude:
 linters:
   LineLength:
     enabled: false
+  ViewLength:
+    enabled: false
