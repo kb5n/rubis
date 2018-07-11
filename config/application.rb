@@ -18,9 +18,7 @@ module Rubis
     # when you request as ajax, set remote: true
     config.action_view.form_with_generates_remote_forms = false
 
-    # rubocop:disable Metrics/LineLength
-    Refile.secret_key = '9de22004a7068316a10854d51e96cf86071e5513f844f2cad92bdc3314eadd538a10cc1f2596c5e4719a888d54f492afd8ffd99906c47c39e2ac85514e120bf2'
-    # rubocop:enable Metrics/LineLength
+    Refile.secret_key = Rails.application.credentials.refile[:secret]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
