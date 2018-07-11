@@ -19,6 +19,15 @@ routes:
 clear-cache:
 	bundle exec rake tmp:cache:clear
 
+credentials:
+	EDITOR=vim bundle exec rails credentials:edit
+
+credentials-development:
+	EDITOR=vim rails env_credentials:edit -e development
+
+credentials-test:
+	EDITOR=vim rails env_credentials:edit -e test
+
 rubocop:
 	bundle exec rubocop
 

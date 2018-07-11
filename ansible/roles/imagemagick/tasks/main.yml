@@ -1,0 +1,7 @@
+---
+- name: install imagemagick
+  become: true
+  yum: name={{ item }} state=latest
+  with_items:
+    - ImageMagick
+    - ImageMagick-devel

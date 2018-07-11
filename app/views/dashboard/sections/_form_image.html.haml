@@ -1,8 +1,10 @@
 .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:image_url).any?) }
-  = f.label :image_url, class: 'col-sm-2 control-label'
+  = f.label :image, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.file_field :image_url, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: f.object, column: :image_url
+    - if f.object.image?
+      = attachment_image_tag f.object, :image, class: 'img-responsive'
+    = f.attachment_field :image, class: 'form-control'
+    = render 'dashboard/shared/error_message', item: f.object, column: :image
 .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:title).any?) }
   = f.label :title, class: 'col-sm-2 control-label'
   .col-sm-10

@@ -8,7 +8,6 @@ ja:
   image: 画像
   link: リンク
   location: 地図
-  share_tag: 共有タグ
   activerecord:
     models:
         article: 記事

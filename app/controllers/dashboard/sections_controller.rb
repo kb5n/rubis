@@ -15,7 +15,9 @@ module Dashboard
     # POST /dashboard/sections
     def create
       @section = Section.new(section_params)
-      @section.sequence = @section.article.sections.size
+      article = Article.find(params[:article_id])
+      @section.article = article
+      @section.sequence = article.sections.size
 
       if @section.save
         redirect_to [:dashboard, @section.article], success: 'Section was successfully created.'
@@ -26,8 +28,11 @@ module Dashboard
 
     # PATCH/PUT /dashboard/sections/1
     def update
-      if @section.update(section_params)
-        redirect_to dashboard_sections_url, success: 'Section was successfully updated.'
+      @section.assign_attributes(section_params)
+
+      if @section.save
+        # if @section.update(section_params)
+        redirect_to dashboard_article_url(id: @section.article_id), success: 'Section was successfully updated.'
       else
         render :edit
       end
@@ -49,7 +54,18 @@ module Dashboard
 
     # Only allow a trusted parameter "white list" through.
     def section_params
-      params.require(:section).permit(:article_id, :content_type, :title, :description, :url, :image_url, :source)
+      params.require(:section).permit(
+        :article_id,
+        :content_type,
+        :title,
+        :description,
+        :url,
+        :image,
+        :og_title,
+        :og_description,
+        :og_image,
+        :og_site_name
+      )
     end
   end
 end

@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_06_26_020514) do
     t.string "title", null: false
     t.string "identifier", null: false
     t.integer "status", null: false
-    t.datetime "published_at", default: "2018-06-29 07:11:47", null: false
+    t.datetime "published_at", default: "2018-07-05 09:06:59", null: false
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,12 +45,18 @@ ActiveRecord::Schema.define(version: 2018_06_26_020514) do
   create_table "sections", force: :cascade do |t|
     t.integer "article_id"
     t.integer "content_type"
-    t.string "title"
     t.integer "sequence", null: false
+    t.string "title"
     t.text "description"
+    t.string "image_id"
+    t.string "image_filename"
+    t.string "image_content_size"
+    t.string "image_content_type"
     t.text "url"
-    t.text "image_url"
-    t.string "source"
+    t.string "og_site_name"
+    t.string "og_title"
+    t.text "og_description"
+    t.text "og_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_sections_on_article_id"

@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     resources :sites, only: %i[show edit update]
     resources :tags, except: %i[show]
     resources :categories, except: %i[show]
-    resources :articles
-    resources :sections, except: %i[index show]
+    resources :articles, shallow: true do
+      resources :sections, except: %i[index show]
+    end
   end
   root to: 'top#index'
   resources :articles, param: :identifier, only: %i[show]

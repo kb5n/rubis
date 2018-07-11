@@ -1,5 +1,5 @@
 .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:url).any?) }
-  = f.label :url, class: 'col-sm-2 control-label', value: (t :share_tag) if f.object.id.blank?
+  = f.label :url, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :url, class: 'form-control'
     = render 'dashboard/shared/error_message', item: f.object, column: :url

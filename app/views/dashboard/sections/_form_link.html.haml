@@ -1,13 +1,3 @@
-.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:title).any?) }
-  = f.label :title, class: 'col-sm-2 control-label'
-  .col-sm-10
-    = f.text_field :title, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: f.object, column: :title
-.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:description).any?) }
-  = f.label :description, class: 'col-sm-2 control-label'
-  .col-sm-10
-    = f.text_area :description, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: f.object, column: :description
 .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:url).any?) }
   = f.label :url, class: 'col-sm-2 control-label'
   .col-sm-10
@@ -17,13 +7,23 @@
         .btn.btn-info{ type: 'button' }
           Load
     = render 'dashboard/shared/error_message', item: f.object, column: :url
-.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:image_url).any?) }
-  = f.label :image_url, class: 'col-sm-2 control-label'
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:og_title).any?) }
+  = f.label :og_title, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.text_field :image_url, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: f.object, column: :image_url
-.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:source).any?) }
-  = f.label :source, class: 'col-sm-2 control-label'
+    = f.text_field :og_title, class: 'form-control'
+    = render 'dashboard/shared/error_message', item: f.object, column: :og_title
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:og_description).any?) }
+  = f.label :og_description, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.text_field :source, class: 'form-control'
-    = render 'dashboard/shared/error_message', item: f.object, column: :source
+    = f.text_area :og_description, class: 'form-control'
+    = render 'dashboard/shared/error_message', item: f.object, column: :og_description
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:og_image).any?) }
+  = f.label :og_image, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :og_image, class: 'form-control'
+    = render 'dashboard/shared/error_message', item: f.object, column: :og_image
+.form-group{ class: ('has-error' if f.object.errors.full_messages_for(:og_site_name).any?) }
+  = f.label :og_site_name, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :og_site_name, class: 'form-control'
+    = render 'dashboard/shared/error_message', item: f.object, column: :og_site_name

@@ -26,19 +26,18 @@
               - if section.description.present?
                 .meta= section.description
       - if section.link?
-        .ui.fluid.card
-          .content
-            - if section.image_url.present?
-              .right.floated.small.ui.image
-                = link_to section.url do
-                  = image_tag(section.image_url)
-            .header
-              = link_to section.url do
-                = section.title
-            - if section.source.present?
-              .meta= section.source
-            - if section.description.present?
-              .description= section.description
+        = link_to section.url do
+          .ui.fluid.card
+            .content
+              - if section.og_image.present?
+                .right.floated.small.ui.image
+                  = image_tag(section.og_image)
+              .header
+                = section.og_title
+              - if section.og_site_name.present?
+                .meta= section.og_site_name
+              - if section.og_description.present?
+                .description= section.og_description
       - if section.location?
         .ui.fluid.card
           .image
