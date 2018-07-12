@@ -7,12 +7,12 @@
         = link_to dashboard_site_url, class: 'btn btn-sm btn-info pull-left' do
           = t :back
       .box-body
-        .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:title).any?) }
+        .form-group
           = f.label :title, class: 'col-sm-2 control-label'
           .col-sm-10
             = f.text_field :title, class: 'form-control'
             = render 'dashboard/shared/error_message', item: f.object, column: :title
-        .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:description).any?) }
+        .form-group
           = f.label :description, class: 'col-sm-2 control-label'
           .col-sm-10
             = f.text_area :description, class: 'form-control'
@@ -25,7 +25,7 @@
         .form-group
           = f.label :started_at, class: 'col-sm-2 control-label'
           .col-sm-10
-            = f.text_field :started_at, class: 'form-control pull-right', value: I18n.l(f.object.started_at)
+            = f.text_field :started_at, class: 'form-control pull-right', value: (I18n.l(f.object.started_at) if f.object.started_at.present?)
             = render 'dashboard/shared/error_message', item: f.object, column: :started_at
 
       .box-footer

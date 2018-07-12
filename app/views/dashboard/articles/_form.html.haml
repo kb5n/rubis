@@ -4,27 +4,27 @@
       = link_to dashboard_articles_url, class: 'btn btn-sm btn-info pull-left' do
         = t :back
     .box-body
-      .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:title).any?) }
+      .form-group
         = f.label :title, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.text_field :title, class: 'form-control'
           = render 'dashboard/shared/error_message', item: f.object, column: :title
-      .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:identifier).any?) }
+      .form-group
         = f.label :identifier, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.text_field :identifier, class: 'form-control'
           = render 'dashboard/shared/error_message', item: f.object, column: :identifier
-      .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:category_id).any?) }
+      .form-group
         = f.label :category_id, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.select :category_id, categories.map { |c| [c.name, c.id] }, {}, class: 'form-control'
           = render 'dashboard/shared/error_message', item: f.object, column: :category_id
-      .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:published_at).any?) }
+      .form-group
         = f.label :published_at, class: 'col-sm-2 control-label'
         .col-sm-10
-          = f.text_field :published_at, class: 'form-control', value: I18n.l(f.object.published_at)
+          = f.text_field :published_at, class: 'form-control', value: (I18n.l(f.object.published_at) if f.object.published_at.present?)
           = render 'dashboard/shared/error_message', item: f.object, column: :published_at
-      .form-group{ class: ('has-error' if f.object.errors.full_messages_for(:status).any?) }
+      .form-group
         = f.label :status, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.select :status, Article.statuses.keys.to_a, {}, class: 'form-control'

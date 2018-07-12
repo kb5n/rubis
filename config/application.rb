@@ -18,6 +18,11 @@ module Rubis
     # when you request as ajax, set remote: true
     config.action_view.form_with_generates_remote_forms = false
 
+    # set default error class
+    config.action_view.field_error_proc = proc { |html_tag, _instance|
+      content_tag(:div, html_tag, class: 'has-error')
+    }
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
