@@ -4,8 +4,7 @@
     .input-group
       = f.text_field :url, class: 'form-control'
       .input-group-btn
-        .btn.btn-info{ type: 'button' }
-          Load
+        = f.submit 'Preview', class: 'btn btn-info', name: 'preview'
     = render 'dashboard/shared/error_message', item: f.object, column: :url
 .form-group
   = f.label :og_title, class: 'col-sm-2 control-label'

@@ -27,16 +27,28 @@ module Dashboard
     end
 
     # PATCH/PUT /dashboard/sections/1
+    # rubocop:disable Metrics/AbcSize
     def update
       @section.assign_attributes(section_params)
 
-      if @section.save
-        # if @section.update(section_params)
+      if params[:commit] && @section.save
         redirect_to dashboard_article_url(id: @section.article_id), success: 'Section was successfully updated.'
-      else
-        render :edit
+        return
       end
+
+      if params[:preview]
+        scraper = ::Opengraph::Scraper.new
+        og_info = scraper.load(@section.url)
+        @section.url = og_info[:url]
+        @section.og_title = og_info[:title]
+        @section.og_description = og_info[:description]
+        @section.og_site_name = og_info[:site_name]
+        @section.og_image = og_info[:image]
+      end
+
+      render :edit
     end
+    # rubocop:enable Metrics/AbcSize
 
     # DELETE /dashboard/sections/1
     def destroy
