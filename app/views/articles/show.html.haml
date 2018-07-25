@@ -2,7 +2,7 @@
   %h2.ui.header
     = @article.title
     .sub.header
-      = @article.published_at
+      = l @article.published_at
   = link_to category_path(@article.category.identifier) do
     .ui.violet.ribbon.label
       = @article.category.name
