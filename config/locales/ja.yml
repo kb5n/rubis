@@ -227,4 +227,4 @@ ja:
     am: 午前
     pm: 午後
     formats:
-      default: '%Y/%m/%d %H:%M:%S'
+      default: '%Y/%m/%d %H:%M'
