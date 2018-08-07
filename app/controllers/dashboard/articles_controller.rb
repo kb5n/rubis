@@ -1,7 +1,7 @@
 module Dashboard
   class ArticlesController < Dashboard::ApplicationController
     before_action :set_article, only: %i[show edit update destroy]
-    before_action :set_categories, except: %i[index]
+    before_action :set_options, except: %i[index]
 
     layout 'dashboard/application'
 
@@ -55,8 +55,9 @@ module Dashboard
       @article = Article.find(params[:id])
     end
 
-    def set_categories
+    def set_options
       @categories = Category.all
+      @tags = Tag.all
     end
 
     # Only allow a trusted parameter "white list" through.

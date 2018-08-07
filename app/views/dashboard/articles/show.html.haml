@@ -52,6 +52,29 @@
               = link_to new_dashboard_article_section_path(article_id: @article.id, content_type: :location) do
                 %i.fa.fa-map-o
                 = t :location
+
+  .box
+    .box-header
+      %h3.box-title Tags
+    - if @article.article_tags.size.positive?
+      .box-body
+        .table-responsive
+          %table.table.no-padding
+            %thead
+              %tr
+                %th= Tag.human_attribute_name(:name)
+                %th destroy
+            %tbody
+              - @article.article_tags.each do |article_tag|
+                %tr
+                  %td= article_tag.tag.name
+                  %td= link_to 'Destroy', dashboard_article_tag_path(article_tag), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
+    .box-footer
+      .pull-right
+        = form_with model: [:dashboard, ArticleTag.new(article_id: @article.id)], url: dashboard_article_article_tags_path(article_id: @article.id), html: { class: 'form-inline' } do |f|
+          = f.select :tag_id, @tags.where.not(id: @article.tags).map { |t| [t.name, t.id] }, {}, class: 'form-control'
+          = f.submit 'Add Tag', class: 'btn btn-sm btn-success'
+
   .box
     .box-body
       - @article.sections.each do |section|
