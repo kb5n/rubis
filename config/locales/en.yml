@@ -5,3 +5,9 @@ en:
   time:
     formats:
       default: '%Y/%m/%d %H:%M'
+  activerecord:
+    attributes:
+      category:
+        name: Category Name
+      tag:
+        name: Tag Name
