@@ -11,8 +11,10 @@ Rails.application.routes.draw do
     resources :categories, except: %i[show]
     resources :articles, shallow: true do
       resources :sections, except: %i[index show]
+      resources :article_tags, only: %i[create destroy]
     end
   end
+
   root to: 'top#index'
   resources :articles, param: :identifier, only: %i[show]
   resources :tags, param: :identifier, only: %i[show]
