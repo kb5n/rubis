@@ -13,13 +13,14 @@ module Dashboard
     def edit; end
 
     # POST /dashboard/sections
+    # rubocop:disable Metrics/AbcSize
     def create
       @section = Section.new(section_params)
       article = Article.find(params[:article_id])
       @section.article = article
       @section.sequence = article.sections.size
 
-      set_preview(params)
+      preview_link if @section.link? && params[:preview]
 
       if params[:commit] && @section.save
         redirect_to [:dashboard, @section.article], success: 'Section was successfully created.'
@@ -28,13 +29,13 @@ module Dashboard
 
       render :new
     end
+    # rubocop:enable Metrics/AbcSize
 
     # PATCH/PUT /dashboard/sections/1
-    # rubocop:disable Metrics/AbcSize
     def update
       @section.assign_attributes(section_params)
 
-      set_preview(params)
+      preview_link if @section.link? && params[:preview]
 
       if params[:commit] && @section.save
         redirect_to dashboard_article_url(id: @section.article_id), success: 'Section was successfully updated.'
@@ -43,7 +44,6 @@ module Dashboard
 
       render :edit
     end
-    # rubocop:enable Metrics/AbcSize
 
     # DELETE /dashboard/sections/1
     def destroy
@@ -75,16 +75,14 @@ module Dashboard
       )
     end
 
-    def set_preview(params)
-      if params[:preview]
-        scraper = ::Opengraph::Scraper.new
-        og_info = scraper.load(@section.url)
-        @section.url = og_info[:url]
-        @section.og_title = og_info[:title]
-        @section.og_description = og_info[:description]
-        @section.og_site_name = og_info[:site_name]
-        @section.og_image = og_info[:image]
-      end
+    def preview_link
+      scraper = ::Opengraph::Scraper.new
+      og_info = scraper.load(@section.url)
+      @section.url = og_info[:url]
+      @section.og_title = og_info[:title]
+      @section.og_description = og_info[:description]
+      @section.og_site_name = og_info[:site_name]
+      @section.og_image = og_info[:image]
     end
   end
 end
