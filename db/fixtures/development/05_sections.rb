@@ -1,8 +1,8 @@
-[*1..10].each do |article_id|
-  10.times do |n|
+[*1..20].each do |article_id|
+  10.times do |i|
     Section.seed do |s|
       s.article_id = article_id
-      s.sequence = n
+      s.sequence = i
       content_type = Section.content_types.keys.sample.to_sym
       s.content_type = content_type
       case content_type

@@ -3,6 +3,7 @@ class CreateTags < ActiveRecord::Migration[5.2]
     create_table :tags do |t|
       t.string :name, null: false
       t.string :identifier, null: false
+      t.references :user
 
       t.timestamps
     end

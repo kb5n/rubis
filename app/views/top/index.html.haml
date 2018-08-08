@@ -1,16 +1,16 @@
 - @articles.each do |article|
   .ui.clearing.segment
     %h2.ui.header
-      = link_to article_path(article.identifier) do
+      = link_to article_path(@user.identifier, article.identifier) do
         = article.title
       .sub.header
         = l article.published_at
     .labels
-      = link_to category_path(article.category.identifier) do
+      = link_to category_path(@user.identifier, article.category.identifier) do
         .ui.violet.ribbon.label
           = article.category.name
       - article.tags.each do |tag|
-        = link_to tag_path(tag.identifier) do
+        = link_to tag_path(@user.identifier, tag.identifier) do
           .ui.pink.tag.label
             = tag.name
     .ui.hidden.divider
@@ -24,7 +24,7 @@
 
     .ui.hidden.divider
 
-    = link_to article_path(article.identifier), class: 'ui right floated animated teal button' do
+    = link_to article_path(@user.identifier, article.identifier), class: 'ui right floated animated teal button' do
       .visible.content
         Read more
       .hidden.content

@@ -6,7 +6,7 @@ module Dashboard
 
     # GET /dashboard/categories
     def index
-      @categories = Category.all
+      @categories = Category.where(user_id: current_user.id).all
     end
 
     # GET /dashboard/categories/new
@@ -20,6 +20,7 @@ module Dashboard
     # POST /dashboard/categories
     def create
       @category = Category.new(category_params)
+      @category.user_id = current_user.id
 
       if @category.save
         redirect_to dashboard_categories_url, success: 'Category was successfully created.'

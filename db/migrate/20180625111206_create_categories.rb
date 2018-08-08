@@ -4,6 +4,7 @@ class CreateCategories < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.text :description
       t.string :identifier, null: false
+      t.references :user
 
       t.timestamps
     end
