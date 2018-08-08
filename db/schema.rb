@@ -25,21 +25,25 @@ ActiveRecord::Schema.define(version: 2018_06_26_020514) do
     t.string "title", null: false
     t.string "identifier", null: false
     t.integer "status", null: false
-    t.datetime "published_at", default: "2018-07-05 09:06:59", null: false
+    t.datetime "published_at", default: "2018-08-08 18:23:37", null: false
     t.integer "category_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["identifier"], name: "index_articles_on_identifier", unique: true
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.string "identifier", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["identifier"], name: "index_categories_on_identifier", unique: true
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -62,33 +66,32 @@ ActiveRecord::Schema.define(version: 2018_06_26_020514) do
     t.index ["article_id"], name: "index_sections_on_article_id"
   end
 
-  create_table "sites", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "description"
-    t.string "copyright", null: false
-    t.date "started_at", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
     t.string "identifier", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["identifier"], name: "index_tags_on_identifier", unique: true
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "identifier", null: false
     t.string "email", null: false
+    t.string "name", null: false
+    t.integer "role_type", null: false
+    t.string "blog_title", null: false
+    t.string "blog_description"
+    t.date "blog_started_at", null: false
     t.string "crypted_password"
     t.string "salt"
-    t.string "name", null: false
     t.string "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["identifier"], name: "index_users_on_identifier"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
 

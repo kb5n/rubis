@@ -7,7 +7,7 @@ module Dashboard
 
     # GET /dashboard/articles
     def index
-      @articles = Article.all.order('published_at desc')
+      @articles = Article.where(user_id: current_user.id).all.order('published_at desc')
     end
 
     # GET /dashboard/articles/1
@@ -15,7 +15,7 @@ module Dashboard
 
     # GET /dashboard/articles/new
     def new
-      @article = Article.new(status: :draft)
+      @article = Article.new(user_id: current_user.id, status: :draft)
     end
 
     # GET /dashboard/articles/1/edit
@@ -24,6 +24,7 @@ module Dashboard
     # POST /dashboard/articles
     def create
       @article = Article.new(article_params)
+      @article.user_id = current_user.id
       @article.status = :draft
 
       if @article.save
@@ -56,8 +57,8 @@ module Dashboard
     end
 
     def set_options
-      @categories = Category.all
-      @tags = Tag.all
+      @categories = Category.where(user_id: current_user.id).all
+      @tags = Tag.where(user_id: current_user.id).all
     end
 
     # Only allow a trusted parameter "white list" through.

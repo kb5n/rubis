@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     post 'logout' => 'sessions#destroy', :as => :logout
 
     resources :sessions, only: %i[new create destroy]
-    resources :sites, only: %i[show edit update]
+    resources :users, only: %i[show edit update]
     resources :tags, except: %i[show]
     resources :categories, except: %i[show]
     resources :articles, shallow: true do
@@ -15,8 +15,10 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'top#index'
-  resources :articles, param: :identifier, only: %i[show]
-  resources :tags, param: :identifier, only: %i[show]
-  resources :categories, param: :identifier, only: %i[show]
+  scope '(:user_identifier)' do
+    root to: 'top#index'
+    resources :articles, param: :identifier, only: %i[show]
+    resources :tags, param: :identifier, only: %i[show]
+    resources :categories, param: :identifier, only: %i[show]
+  end
 end

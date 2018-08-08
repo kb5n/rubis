@@ -3,11 +3,11 @@
     = @article.title
     .sub.header
       = l @article.published_at
-  = link_to category_path(@article.category.identifier) do
+  = link_to category_path(@user.identifier, @article.category.identifier) do
     .ui.violet.ribbon.label
       = @article.category.name
   - @article.tags.each do |tag|
-    = link_to tag_path(tag.identifier) do
+    = link_to tag_path(@user.identifier, tag.identifier) do
       .ui.pink.tag.label
         = tag.name
   - @article.sections.each do |section|

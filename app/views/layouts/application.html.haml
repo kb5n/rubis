@@ -3,7 +3,7 @@
   %head
     %meta{ :content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %title
-      = @site.title
+      = @user.blog_title
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -13,28 +13,28 @@
 
     %h1.ui.center.aligned.header
       .content
-        = link_to @site.title, root_path
-        - if @site.description.present?
+        = link_to @user.blog_title, root_path(@user.identifier)
+        - if @user.blog_description.present?
           .sub.header
-            = @site.description
+            = @user.blog_description
 
     .ui.hidden.divider
 
     .ui.main.container
       .ui.breadcrumb
-        = link_to root_path do
+        = link_to root_path(@user.identifier) do
           %i.home.icon
         - if @tag.present?
           %i.right.angle.icon.divider
           .section.active
-            = link_to @tag.name, category_path(@tag.identifier), class: 'section'
+            = link_to @tag.name, category_path(@user.identifier, @tag.identifier), class: 'section'
         - if @category.present?
           %i.right.angle.icon.divider
           .section.active
-            = link_to @category.name, category_path(@category.identifier), class: 'section'
+            = link_to @category.name, category_path(@user.identifier, @category.identifier), class: 'section'
         - if @article.present?
           %i.right.angle.icon.divider
-          = link_to @article.category.name, category_path(@article.category.identifier), class: 'section'
+          = link_to @article.category.name, category_path(@user.identifier, @article.category.identifier), class: 'section'
           %i.right.angle.icon.divider
           .section.active
             = @article.title
@@ -54,7 +54,7 @@
           .ui.labels
             - @categories.each do |category|
               - unless category.public_articles.size.zero?
-                = link_to category_path(category.identifier), class: 'ui violet label' do
+                = link_to category_path(@user.identifier, category.identifier), class: 'ui violet label' do
                   = category.name
                   .detail
                     = category.public_articles.size
@@ -65,7 +65,7 @@
           .ui.tag.labels
             - @tags.each do |tag|
               - unless tag.public_articles.size.zero?
-                = link_to tag_path(tag.identifier), class: 'ui pink label' do
+                = link_to tag_path(@user.identifier, tag.identifier), class: 'ui pink label' do
                   = tag.name
                   .detail
                     = tag.public_articles.size
@@ -75,12 +75,12 @@
     %h5.ui.center.aligned.header
       .sub.header
         &copy;
-        - if Time.current.year != @site.started_at.year
-          = @site.started_at.strftime('%Y ')
+        - if Time.current.year != @user.blog_started_at.year
+          = @user.blog_started_at.strftime('%Y ')
           != '-'
         = Time.current.year
         != '&nbsp;'
-        = @site.copyright
+        = @user.name
 
     .ui.hidden.divider
 

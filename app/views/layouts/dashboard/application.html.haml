@@ -46,14 +46,14 @@
               = link_to '#' do
                 %i.fa.fa-cubes
                 %span
-                  Settings
+                  Menu
                 %span.pull-right-container
                   %i.fa.fa-angle-left.pull-right
               %ul.treeview-menu
                 %li
-                  = link_to dashboard_site_url(@site) do
-                    %i.fa.fa-bookmark-o
-                    Site
+                  = link_to dashboard_user_url(current_user) do
+                    %i.fa.fa-user-o
+                    Setting
               %ul.treeview-menu
                 %li
                   = link_to dashboard_categories_url do

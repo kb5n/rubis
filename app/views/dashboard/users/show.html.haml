@@ -1,0 +1,25 @@
+%section.content-header
+  %h1 User
+%section.content
+  .box
+    .box-body
+      %dl.dl-horizontal
+        %dt= User.human_attribute_name(:identifier)
+        %dd= @user.identifier
+        %dt= User.human_attribute_name(:email)
+        %dd= @user.email
+        %dt= User.human_attribute_name(:name)
+        %dd= @user.name
+        %dt= User.human_attribute_name(:blog_title)
+        %dd= @user.blog_title
+        %dt= User.human_attribute_name(:blog_description)
+        %dd= @user.blog_description
+        %dt= User.human_attribute_name(:blog_started_at)
+        %dd= l @user.blog_started_at
+        %dt= User.human_attribute_name(:created_at)
+        %dd= l @user.created_at
+        %dt= User.human_attribute_name(:updated_at)
+        %dd= l @user.updated_at
+
+    .box-footer
+      = link_to 'Edit', edit_dashboard_user_path(@user), class: 'btn btn-sm btn-success pull-right'

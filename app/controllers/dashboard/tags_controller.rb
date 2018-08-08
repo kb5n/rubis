@@ -5,7 +5,7 @@ module Dashboard
     layout 'dashboard/application'
     # GET /dashboard/tags
     def index
-      @tags = Tag.all
+      @tags = Tag.where(user_id: current_user.id).all
     end
 
     # GET /dashboard/tags/new
@@ -19,6 +19,7 @@ module Dashboard
     # POST /dashboard/tags
     def create
       @tag = Tag.new(tag_params)
+      @tag.user_id = current_user.id
 
       if @tag.save
         redirect_to dashboard_tags_url, success: 'Tag was successfully created.'

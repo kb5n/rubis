@@ -41,4 +41,10 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:password_confirmation]).to include('doesn\'t match Password')
   end
+
+  it 'is invalid without blog_title' do
+    user = FactoryBot.build(:user, blog_title: nil)
+    user.valid?
+    expect(user.errors[:blog_title]).to include('can\'t be blank')
+  end
 end

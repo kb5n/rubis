@@ -6,6 +6,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.integer :status, default: :draft, null: false
       t.datetime :published_at, default: Time.current, null: false
       t.references :category
+      t.references :user
 
       t.timestamps
     end
