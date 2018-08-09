@@ -5,7 +5,7 @@ class User < ActiveRecord::Migration[5.2]
       t.string :identifier, null: false
       t.string :email, null: false
       t.string :name, null: false
-      t.integer :role_type, null: false, default: :guest
+      t.integer :role_type, null: false, default: 0
       t.string :blog_title, null: false
       t.string :blog_description
       t.date :blog_started_at, null: false
