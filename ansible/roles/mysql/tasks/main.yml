@@ -18,6 +18,6 @@
   become: true
   command: "{{ item }}"
   with_items:
-    - sed -i -e '/^\[mysqld\]/a character-set-server=utf8' /etc/my.cnf
+    - sed -i -e '/^\[mysqld\]/a character-set-server=utf8mb4' /etc/my.cnf
     - sh -c "echo '[client]' >> /etc/my.cnf"
-    - sh -c "echo 'default-character-set=utf8' >> /etc/my.cnf"
+    - sh -c "echo 'default-character-set=utf8mb4' >> /etc/my.cnf"
