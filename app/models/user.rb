@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
 
-  enum role_type: {guest: 0, admin: 1}
+  enum role_type: { guest: 0, admin: 1 }
 
   validates :name, presence: true
   validates :identifier, presence: true, uniqueness: true, format: /\A[A-Za-z0-9\_]+\Z/
