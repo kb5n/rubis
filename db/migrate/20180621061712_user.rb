@@ -2,7 +2,7 @@ class User < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
       t.string :identifier, null: false
-      t.string :email, limit: 128, null: false
+      t.string :email, limit: 256, null: false
       t.string :name, null: false
       t.integer :role_type, null: false, default: :guest
       t.string :blog_title, null: false
