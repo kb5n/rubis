@@ -3,7 +3,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
     create_table :articles do |t|
       t.string :title, null: false
       t.string :identifier, limit: 128, null: false
-      t.integer :status, default: :draft, null: false
+      t.integer :status, null: false, default: 0 #draft
       t.datetime :published_at, default: Time.current, null: false
       t.references :category
       t.references :user
