@@ -1,7 +1,7 @@
 class Section < ApplicationRecord
   belongs_to :article
 
-  enum content_type: %i[paragraph image location link]
+  enum content_type: {paragraph: 1, image: 2, location: 3, link: 4}
 
   attachment :image
 
