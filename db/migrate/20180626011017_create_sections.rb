@@ -4,7 +4,7 @@ class CreateSections < ActiveRecord::Migration[5.2]
     create_table :sections do |t|
       t.references :article
       t.integer :content_type
-      t.integer :sequence, null: false, default: 0 #paragraph
+      t.integer :sequence, null: false, default: 0 # paragraph
       t.string :title
       t.text :description
       t.string :image_id
