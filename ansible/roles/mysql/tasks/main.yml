@@ -18,6 +18,10 @@
   become: true
   command: "{{ item }}"
   with_items:
+    - sed -i -e '/^\[mysqld\]/a innodb_file_format_max=barracuda' /etc/my.cnf
+    - sed -i -e '/^\[mysqld\]/a innodb_file_format=barracuda' /etc/my.cnf
+    - sed -i -e '/^\[mysqld\]/a innodb_file_per_table' /etc/my.cnf
+    - sed -i -e '/^\[mysqld\]/a innodb_large_prefix' /etc/my.cnf
     - sed -i -e '/^\[mysqld\]/a character-set-server=utf8mb4' /etc/my.cnf
     - sh -c "echo '[client]' >> /etc/my.cnf"
     - sh -c "echo 'default-character-set=utf8mb4' >> /etc/my.cnf"
