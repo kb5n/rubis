@@ -3,7 +3,7 @@ class CreateCategories < ActiveRecord::Migration[5.2]
     create_table :categories do |t|
       t.string :name, null: false
       t.text :description
-      t.string :identifier, limit: 128, null: false
+      t.string :identifier, null: false
       t.references :user
 
       t.timestamps
