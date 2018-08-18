@@ -10,9 +10,9 @@ jobs:
       - image: circleci/ruby:2.5.1-node-browsers
         environment:
           RAILS_ENV: test
-          TEST_DATABASE_NAME: test_dbname
-          TEST_DATABASE_USER: test_dbuser
-          TEST_DATABASE_PASSWORD: password
+          TEST_DATABASE_NAME: testdb
+          TEST_DATABASE_USER: 'root'
+          TEST_DATABASE_PASSWORD: ''
           TEST_DATABASE_HOST: 127.0.0.1
 
       # Specify service dependencies here if necessary
