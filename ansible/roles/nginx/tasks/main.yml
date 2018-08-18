@@ -3,6 +3,10 @@
   become: true
   yum: name=nginx state=latest
 
+- name: copy nginx config
+  become: true
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf owner=root group=root mode=0644 backup=true
+
 - name: start nginx
   become: true
   service:

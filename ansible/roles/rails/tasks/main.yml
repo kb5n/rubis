@@ -4,6 +4,7 @@
   yum: name={{ item }} state=latest
   with_items:
     - sqlite-devel
+    - readline-devel
 
 - name: install rails
   become: true

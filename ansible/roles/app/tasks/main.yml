@@ -1,0 +1,24 @@
+---
+- name: copy application config
+  become: true
+  template: src=conf.d/papablog.http.conf dest=/etc/nginx/conf.d/papablog.conf owner=root group=root mode=0644
+
+- name: restart nginx
+  become: true
+  service:
+    name: nginx
+    state: restarted
+
+- name: obtains ssl keys
+  become: true
+  command: certbot certonly --webroot -d papablog.jp -w /var/www/papablog/current/public --email shu@ozawa.tech --keep-until-expiring --agree-tos --non-interactive
+
+- name: copy application config
+  become: true
+  template: src=conf.d/papablog.https.conf dest=/etc/nginx/conf.d/papablog.conf owner=root group=root mode=0644
+
+- name: restart nginx
+  become: true
+  service:
+    name: nginx
+    state: restarted
