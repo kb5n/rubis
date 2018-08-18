@@ -14,7 +14,10 @@ class User < ActiveRecord::Migration[5.2]
       t.datetime :remember_me_token_expires_at, default: nil
       t.timestamps null: false
     end
-    add_index :users, :email, unique: true
-    add_index :users, :identifier
+
+    change_table :users, bulk: true do |t|
+      add_index :users, :email, unique: true
+      add_index :users, :identifier
+    end
   end
 end
