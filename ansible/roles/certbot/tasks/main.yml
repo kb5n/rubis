@@ -1,0 +1,4 @@
+---
+- name: install certbot
+  become: true
+  yum: name=certbot state=latest

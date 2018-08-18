@@ -12,22 +12,22 @@
 
 ActiveRecord::Schema.define(version: 2018_06_26_020514) do
 
-  create_table "article_tags", force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "tag_id"
+  create_table "article_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_article_tags_on_article_id"
     t.index ["tag_id"], name: "index_article_tags_on_tag_id"
   end
 
-  create_table "articles", force: :cascade do |t|
+  create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "title", null: false
     t.string "identifier", null: false
-    t.integer "status", null: false
-    t.datetime "published_at", default: "2018-08-08 18:23:37", null: false
-    t.integer "category_id"
-    t.integer "user_id"
+    t.integer "status", default: 0, null: false
+    t.datetime "published_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.bigint "category_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_articles_on_category_id"
@@ -35,21 +35,21 @@ ActiveRecord::Schema.define(version: 2018_06_26_020514) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.string "identifier", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["identifier"], name: "index_categories_on_identifier", unique: true
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "sections", force: :cascade do |t|
-    t.integer "article_id"
+  create_table "sections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.bigint "article_id"
     t.integer "content_type"
-    t.integer "sequence", null: false
+    t.integer "sequence", default: 0, null: false
     t.string "title"
     t.text "description"
     t.string "image_id"
@@ -66,21 +66,21 @@ ActiveRecord::Schema.define(version: 2018_06_26_020514) do
     t.index ["article_id"], name: "index_sections_on_article_id"
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", null: false
     t.string "identifier", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["identifier"], name: "index_tags_on_identifier", unique: true
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "identifier", null: false
     t.string "email", null: false
     t.string "name", null: false
-    t.integer "role_type", null: false
+    t.integer "role_type", default: 0, null: false
     t.string "blog_title", null: false
     t.string "blog_description"
     t.date "blog_started_at", null: false
@@ -92,7 +92,8 @@ ActiveRecord::Schema.define(version: 2018_06_26_020514) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["identifier"], name: "index_users_on_identifier"
-    t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
 
+  add_foreign_key "article_tags", "articles"
+  add_foreign_key "article_tags", "tags"
 end

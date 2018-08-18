@@ -6,7 +6,7 @@ class Article < ApplicationRecord
   has_many :article_tags, dependent: :destroy
   has_many :tags, through: :article_tags
 
-  enum status: %i[published draft]
+  enum status: { draft: 0, published: 1 }
 
   validates :title, presence: true
   validates :identifier, presence: true, uniqueness: true, format: /\A[A-Za-z0-9\_]+\Z/

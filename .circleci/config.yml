@@ -7,12 +7,19 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          TEST_DATABASE_NAME: testdb
+          TEST_DATABASE_USER: 'root'
+          TEST_DATABASE_PASSWORD: ''
+          TEST_DATABASE_HOST: 127.0.0.1
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
+      - image: circleci/mysql:5.7
 
     working_directory: ~/repo
 

@@ -1,0 +1,13 @@
+---
+- name: enable ssh and http(s)
+  become: true
+  shell: >
+    firewall-cmd --add-service=ssh --zone=public --permanent;
+    firewall-cmd --add-service=http --zone=public --permanent;
+    firewall-cmd --add-service=https --zone=public --permanent;
+- name: start firewall
+  become: true
+  service:
+    name: firewalld
+    state: restarted
+    enabled: yes

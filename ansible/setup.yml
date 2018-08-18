@@ -6,4 +6,6 @@
     - yarn
     - mysql
     - nginx
+    - certbot
     - imagemagick
+    - firewall

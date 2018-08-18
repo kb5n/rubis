@@ -26,6 +26,10 @@
 /public/assets
 .byebug_history
 
+.env
+/config/deploy/production.rb
+/ansible/hosts/production
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 # /config/master-development.key
