@@ -1,6 +1,9 @@
 setup-staging:
 	cd ansible; ansible-playbook -i hosts/staging setup.yml
 
+deploy-production:
+	bundle exec cap production deploy
+
 db-reset:
 	rm -f db/*.sqlite3
 	bundle exec rails db:create:all
