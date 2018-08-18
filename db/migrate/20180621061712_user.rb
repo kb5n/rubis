@@ -1,4 +1,5 @@
 class User < ActiveRecord::Migration[5.2]
+  # rubocop:disable Metrics/AbcSize
   def change
     create_table :users do |t|
       t.string :identifier, null: false
@@ -15,9 +16,10 @@ class User < ActiveRecord::Migration[5.2]
       t.timestamps null: false
     end
 
-    change_table :users, bulk: true do |t|
+    change_table :users, bulk: true do
       add_index :users, :email, unique: true
       add_index :users, :identifier
     end
   end
+  # rubocop:enable Metrics/AbcSize
 end
