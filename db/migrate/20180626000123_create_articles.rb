@@ -4,7 +4,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.string :identifier, null: false
       t.integer :status, null: false, default: 0 # draft
-      t.datetime :published_at, default: Time.current, null: false
+      t.datetime :published_at, default: -> { 'NOW()' }, null: false
       t.references :category
       t.references :user
 
