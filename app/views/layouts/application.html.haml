@@ -1,9 +1,11 @@
 !!!
 %html
   %head
-    %meta{ name: 'robots', content: 'noindex,nofollow,noarchive' }
     %meta{ :content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %title
+      - if @article.present?
+        = @article.title
+        = ' - '
       = @user.blog_title
     = csrf_meta_tags
     = csp_meta_tag

@@ -2,6 +2,6 @@
   .ui.centered.card
     .content
       .header
-        = link_to user.blog_title, root_path(user)
-      .meta= user.name
+        = link_to user.blog_title, root_path(user.identifier)
+      .meta= user.identifier
       .blog_description= user.blog_description
