@@ -1,7 +1,7 @@
-class TopController < ApplicationController
-  layout 'application'
+class TopController < ActionController::Base
+  layout 'top'
 
   def index
-    @articles = Article.where(user_id: @user.id).open.all.order('published_at desc')
+    @users = User.all
   end
 end
