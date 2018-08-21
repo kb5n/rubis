@@ -1,0 +1,31 @@
+- @articles.each do |article|
+  .ui.clearing.segment
+    %h2.ui.header
+      = link_to article_path(@user.identifier, article.identifier) do
+        = article.title
+      .sub.header
+        = l article.published_at
+    .labels
+      = link_to category_path(@user.identifier, article.category.identifier) do
+        .ui.violet.ribbon.label
+          = article.category.name
+      - article.tags.each do |tag|
+        = link_to tag_path(@user.identifier, tag.identifier) do
+          .ui.pink.tag.label
+            = tag.name
+    .ui.hidden.divider
+    .ui.main.container
+      - unless article.sections.image.size.zero?
+        .ui.fluid.card
+          .image
+            = image_tag(article.sections.image.first.image_url)
+      - unless article.sections.paragraph.size.zero?
+        %p= article.sections.paragraph.first.description
+
+    .ui.hidden.divider
+
+    = link_to article_path(@user.identifier, article.identifier), class: 'ui right floated animated teal button' do
+      .visible.content
+        Read more
+      .hidden.content
+        %i.right.arrow.icon

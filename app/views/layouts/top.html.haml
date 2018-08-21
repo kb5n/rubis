@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{ name: 'robots', content: 'noindex,nofollow,noarchive' }
+    %meta{ :content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
+    %title ぱぱぶろぐ
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .ui.hidden.divider
+    .ui.two.column.grid.main.container
+      .sixteen.wide.computer.sixteen.wide.tablet.sixteen.wide.mobile.column
+        = yield

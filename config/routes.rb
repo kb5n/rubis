@@ -15,8 +15,10 @@ Rails.application.routes.draw do
     end
   end
 
+  root to: 'top#index'
+
   scope '(:user_identifier)' do
-    root to: 'top#index'
+    root to: 'user#index'
     resources :articles, param: :identifier, only: %i[show]
     resources :tags, param: :identifier, only: %i[show]
     resources :categories, param: :identifier, only: %i[show]
