@@ -5,7 +5,7 @@ set :repo_url, 'git@github.com:ozhaan/rubis.git'
 set :deploy_to, '/var/www/app'
 set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 set :linked_files, %w[.env config/master.key]
-set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets tmp/run tmp/uploads vendor/bundle]
+set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets tmp/run tmp/uploads vendor/bundle node_modules]
 set :bundle_flags, '--deployment'
 set :current_path, '/var/www/app/current'
 set :shared_path, '/var/www/app/shared'
