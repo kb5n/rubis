@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'top#index', :as => :root_top
+  root to: 'top#index', as: :root_top
 
   scope '(:user_identifier)' do
     root to: 'user#index'
