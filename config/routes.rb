@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       resources :sections, except: %i[index show]
       resources :article_tags, only: %i[create destroy]
     end
+    post 'sections/:id/increase_sequence', to: 'sections#increase_sequence', as: :increase_order_section
+    post 'sections/:id/decrease_sequence', to: 'sections#decrease_sequence', as: :decrease_order_section
   end
 
   root to: 'top#index', as: :root_top
