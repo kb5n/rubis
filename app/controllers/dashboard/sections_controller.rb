@@ -1,6 +1,6 @@
 module Dashboard
   class SectionsController < Dashboard::ApplicationController
-    before_action :set_section, only: %i[edit update destroy increase_sequence, decrease_sequence]
+    before_action :set_section, only: %i[edit update destroy increase_sequence decrease_sequence]
 
     layout 'dashboard/application'
 
