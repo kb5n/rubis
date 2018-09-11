@@ -3,6 +3,6 @@ class ArticlesController < ApplicationController
 
   # GET /articles/identifier
   def show
-    @article = Article.find_by!(identifier: params[:identifier], status: :published)
+    @article = Article.opened.find_by!(identifier: params[:identifier])
   end
 end

@@ -12,5 +12,5 @@ class Article < ApplicationRecord
   validates :identifier, presence: true, uniqueness: true, format: /\A[A-Za-z0-9\_]+\Z/
   validates :published_at, presence: true
 
-  scope :open, -> { where(status: Article.statuses[:published]).where('published_at <= ?', Time.current) }
+  scope :opened, -> { where(status: Article.statuses[:published]).where('published_at <= ?', Time.current) }
 end
