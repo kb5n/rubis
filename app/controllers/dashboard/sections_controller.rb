@@ -48,7 +48,12 @@ module Dashboard
     # DELETE /dashboard/sections/1
     def destroy
       article_id = @section.article_id
-      @section.destroy
+      ActiveRecord::Base.transaction do
+        Section.where(article_id: @section.article_id).where('sequence > ?', @section.sequence).find_each do |affected_section|
+          affected_section.decrement('sequence').save
+        end
+        @section.destroy
+      end
       redirect_to dashboard_article_url(id: article_id), success: 'Section was successfully destroyed.'
     end
 
