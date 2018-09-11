@@ -96,10 +96,10 @@
             = link_to edit_dashboard_section_path(section), class: 'pull-right btn-box-tool' do
               %i.fa.fa-edit
             - unless section == @article.sections.last
-              = link_to dashboard_increase_order_section_path(section), class: 'pull-right btn-box-tool', method: :post do
+              = link_to dashboard_section_sequence_path(section, params: { increase: true }), class: 'pull-right btn-box-tool', method: :put do
                 %i.fa.fa-arrow-circle-down
             - unless section == @article.sections.first
-              = link_to dashboard_decrease_order_section_path(section), class: 'pull-right btn-box-tool', method: :post do
+              = link_to dashboard_section_sequence_path(section, params: { decrease: true }), class: 'pull-right btn-box-tool', method: :put do
                 %i.fa.fa-arrow-circle-up
         - if section.title.present?
           %strong= section.title

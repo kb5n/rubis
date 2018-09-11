@@ -1,6 +1,6 @@
 module Dashboard
   class SectionsController < Dashboard::ApplicationController
-    before_action :set_section, only: %i[edit update destroy increase_sequence decrease_sequence]
+    before_action :set_section, only: %i[edit update destroy]
 
     layout 'dashboard/application'
 
@@ -52,27 +52,7 @@ module Dashboard
       redirect_to dashboard_article_url(id: article_id), success: 'Section was successfully destroyed.'
     end
 
-    def increase_sequence
-      update_sequence(1)
-      redirect_to dashboard_article_url(id: @section.article_id), success: 'Section display order was successfully increased.'
-    end
-
-    def decrease_sequence
-      update_sequence(-1)
-      redirect_to dashboard_article_url(id: @section.article_id), success: 'Section display order was successfully decreased.'
-    end
-
     private
-
-    def update_sequence(direction)
-      affected_section = Section.where(article_id: @section.article_id).where(sequence: @section.sequence + direction).first!
-      ActiveRecord::Base.transaction do
-        @section.sequence += direction
-        affected_section.sequence += (direction * -1)
-        @section.save!
-        affected_section.save!
-      end
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_section
