@@ -3,12 +3,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find_by!(identifier: params[:identifier])
-    @articles = Article.where(tags: { id: @tag.id })
-                       .published
-                       .where('published_at <= ?', Time.current)
-                       .joins(:tags)
-                       .all
-                       .order('published_at desc')
-    render 'top/index'
+    @articles = Article.opened.where(tags: { id: @tag.id }).joins(:tags).order('published_at desc')
+    render 'user/index'
   end
 end

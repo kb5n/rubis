@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by!(identifier: params[:identifier])
-    @articles = Article.where(category_id: @category.id).published.where('published_at <= ?', Time.current).all.order('published_at desc')
-    render 'top/index'
+    @articles = Article.opened.where(category_id: @category.id).order('published_at desc')
+    render 'user/index'
   end
 end
