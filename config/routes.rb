@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     resources :tags, except: %i[show]
     resources :categories, except: %i[show]
     resources :articles, shallow: true do
-      resources :sections, except: %i[index show]
+      resources :sections, except: %i[index show] do
+        resource :sequence, only: %i[update]
+      end
       resources :article_tags, only: %i[create destroy]
     end
   end
