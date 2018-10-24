@@ -22,12 +22,12 @@
           .image= image_tag(section.image_url)
           - if section.description.present?
             .content
-              .description= section.title
+              .header= section.title
               - if section.description.present?
-                .meta= section.description
+                .description= section.description
       - if section.link?
         = link_to section.url do
-          .ui.fluid.card
+          .ui.fluid.blue.card
             .content
               - if section.og_image.present?
                 .right.floated.small.ui.image
