@@ -22,3 +22,7 @@
    height: 450px;
    border: 0;
 }
+
+.ui.card > .content > .description {
+   clear: none;
+}
