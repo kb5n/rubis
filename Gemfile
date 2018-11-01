@@ -5,6 +5,7 @@ ruby '2.5.1'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails'
+gem 'google-analytics-rails'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'mechanize'
