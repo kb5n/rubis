@@ -125,6 +125,7 @@ GEM
       thor (~> 0.19.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    google-analytics-rails (1.1.1)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -401,6 +402,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   foreman
+  google-analytics-rails
   haml-lint
   haml-rails
   jbuilder (~> 2.5)
